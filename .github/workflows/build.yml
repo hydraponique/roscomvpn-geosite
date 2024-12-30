@@ -55,7 +55,7 @@ jobs:
           mkdir publish
           mv ./*.dat publish
       - name: Publish release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.DAILY_TAG }}
           name: ${{ env.DAILY_TAG }}
