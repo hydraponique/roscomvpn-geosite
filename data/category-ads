@@ -3,14 +3,14 @@ alt-ad.mail.ru
 
 # Try to fix Twitch
 
-full:ads.twitch.tv
-full:spade.twitch.tv
-full:imasdk.googleapis.com
-full:sb.scorecardresearch.com
-full:global.poe.live-video.net
-full:auth.brandis.us
-full:reporting.cdndex.io
-full:playlist.ttvnw.net
+ads.twitch.tv
+spade.twitch.tv
+imasdk.googleapis.com
+sb.scorecardresearch.com
+global.poe.live-video.net
+auth.brandis.us
+reporting.cdndex.io
+playlist.ttvnw.net
 kouch.tv
 amazon-adsystem.com
 doubleclick.net

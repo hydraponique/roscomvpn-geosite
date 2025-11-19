@@ -1,4 +1,5 @@
 # Russian TLDs
+
 ru
 su
 xn--p1ai
@@ -14,15 +15,424 @@ xn--80aswg
 xn--80adxhks
 
 # Belarussian TLDs
+
 by
 xn--90ais
 
 # Kazakhstan TLDs
+
 kz
 xn--80ao21a
 
+# v2ray category-gov-ru
 
-include:category-gov-ru
-include:category-banks-ru
-include:category-only-ru
+emias.info
+
+# runetfreedom only ru
+
+bitrix.info
+ozonusercontent.com
+showip.net
+
+# Yandex
+
+yandex.aero
+yandex.az
+yandex.co.il
+yandex.com
+yandex.com.am
+yandex.com.ge
+yandex.com.tr
+yandex.com.ua
+yandex.de
+yandex.ee
+yandex.eu
+yandex.fi
+yandex.fr
+yandex.jobs
+yandex.kg
+yandex.kz
+yandex.lt
+yandex.lv
+yandex.md
+yandex.net
+yandex.org
+yandex.pl
+yandex.st
+yandex.sx
+yandex.tj
+yandex.tm
+yandex.uz
+yandexcloud.net
+yastatic.net
+yandex.ua
+
+# VK Company
+
+mvk.com
+userapi.com
+vk-apps.com
+vk-cdn.me
+vk-cdn.net
+vk-portal.net
+vk.cc
+vk.com
+vk.company
+vk.design
+vk.link
+vk.me
+vk.team
+vkcache.com
+vkgo.app
+vklive.app
+vkmessenger.app
+vkmessenger.com
+vkuseraudio.com
+vkuserlive.net
+vkuservideo.com
+vkuservideo.net
+mycdn.me
+2ch.hk
+2ch.org
+2ch.life
+
+# Tinkoff / Tbank
+
+tinkoff.do
+four-seasons.group
+tbankjob.site
+4epenaxa.com
+tinkoff-digital.com
+tinkoff.tech
+securetpayment.com
+tinkoff-group.com
+tinkoff.cr
+careeny.xyz
+tinkoff.link
+tlnkof.xyz
+tinkoffgroup.com
+drivercard.site
+tinkoffdigital.com
+tynkoff.cc
+bonus-card.ml
+dorenko.tv
+tinkoffip.site
+tinkoff-anketa.site
+aksyuterian.com
+tinkoff-osago.tk
+bankonline.center
+tlnkoff-open.xyz
+3ds-secure-payment.com
+careery.xyz
+tinkoffreg.site
+tinkoff.cc
+za-group.net
+eginvestments.net
+t-atm.org
+t-avia.org
+t-gorod.org
+t-tps.org
+t-capy.org
+posl-t.org
+billapp.org
+womba-t.org
+tinkoff.sg
+tinkoff.ai
+koshelek.app
+tinkoff.biz
+tinkoffmobile.com
+jump.finance
+tinkoff.cloud
+t.finance
+cloudpayments.world
+investlaboratory.com
+
+# Alfabank
+
+alfa.me
+alfa-bank.net
+alfafx.com
+alfa-bank.biz
+alfa.click
+alfaprivate.com
+alfabank.tv
+alfabank.st
+alformacap.com
+alformacapital.com
+alfa-bank.info
+beta-bank.com
+alfa-finance.com
+alfafinance.biz
+alfa-bank.org
+alfa-bank.com
+lead-pro2023.online
+alfa-bank.financial
+alfa.link
+alfabank.in
+xn--90aifd0aza.site
+investalfabank.com
+alfabank.com
+alfabank.org
+alfa.bank
+alfabank.financial
+alfabank.biz
+miya-news.online
+4meeting.me
+alfa-fx.com
+alfafuture.com
+svoy.academy
+alfa-usa.com
+alfa-pc.com
+
+# VTB
+
+vtbglobalperspectives.com
+russiacalling.com
+vtb-russia.com
+vtbcareer.com
+vtbpartners.com
+vtb24.com
+vtb-direct.com
+vtb.com
+vtbrussia.com
+vtb.digital
+vtbkep.site
+vtbindia.com
+vtb.promo
+
+# Sberbank / Sber
+
+sberbank.com
+sberlabs.com
+sber.me
+sberdocs.com
+sberbankinvestmentresearch.com
+nasporte.life
+sberanalytics.com
+sberbank-cib.com
+sberpravo.info
+sberbusiness.live
+oidconnect.com
+sber.cn
+sber.pro
+sberbank.co.in
+polly.events
+senat.cloud
+nasporte.pro
+sberpravo.tech
+sberbank-pb.com
+sber-impulse.com
+sberimpulse.com
+therussiaforum.com
+aihome.dev
+sbruss.store
+sber.sbs
+sber.world
+smart-cards.pro
+coloradogrowers.com
+sberpay.vip
+creditdevelopment.pro
+topcards.pro
+svy59w.shop
+sber.cfd
+topdeposit.pro
+sberfinance.net
+sber.ws
+vozvratnalogov.online
+smsemailstats.com
+sbercoin.com
+
+# МОРСКОЙ БАНК (АО) (Рег. № 77)
+
+maritimebank.com
+
+# Прио-Внешторгбанк (ПАО) (Рег. № 212)
+
+priovtb.com
+
+# Банк ГПБ (АО) (Рег. № 354)
+
+gazprombank.tech
+
+# ПАО "СПБ Банк" (Рег. № 435)
+
+spbbank.com
+
+# ООО "Камкомбанк" (Рег. № 438)
+
+kamkombank.pro
+
+# АО РНКО "НОДА" (Рег. № 503)
+
+noda.finance
+
+# ПАО "Совкомбанк" (Рег. № 963)
+
+halva.email
+halva.energy
+halva.im
+halva.promo
+halva.tel
+home.bank
+hva.im
+doktor.kr
+scb.im
+sovcombank.business
+sovcombank.credit
+sovcombank.info
+sovcombank.com
+
+# АО "ПЕРВОУРАЛЬСКБАНК" (Рег. № 965)
+
+pvubank.com
+
+# АО КБ "ВАКОБАНК" (Рег. № 1291)
+
+vakobank.com
+
+# КБ "ЭНЕРГОТРАНСБАНК" (АО) (Рег. № 1307)
+
+energotransbank.com
+
+# ООО "АЛТЫНБАНК" (Рег. № 2070)
+
+altynbank.com
+
+# АО АКБ "Алеф-Банк" (Рег. № 2119)
+
+alefbank.com
+
+# АКБ "Абсолют Банк" (ПАО) (Рег. № 2306)
+
+absolutbank.com
+
+# АО "Банк ДОМ.РФ" (Рег. № 2312)
+
+roscap.com
+
+# КБ "Кубань Кредит" ООО (Рег. № 2518)
+
+kk.bank
+kuban-credit.biz
+kuban-credit.com
+kuban-credit.net
+kuban-kredit.biz
+kuban-kredit.com
+kuban-kredit.net
+kuban.credit
+kubancredit.biz
+kubancredit.com
+kubancredit.net
+kubankredit.biz
+kubankredit.com
+kubankredit.net
+xn----7sbcoetidz6azac4j.com
+xn----7sbcoetidz6azac4j.net
+xn--80abkdqhcx2axc5i.com
+
+# Банк "КУБ" (АО) (Рег. № 2584)
+
+prostobank.online
+
+# АКБ "СЛАВИЯ" (АО) (Рег. № 2664)
+
+slavia-bank.com
+slaviabank.com
+
+# КБ "ЛОКО-Банк" (АО) (Рег. № 2707)
+
+locko-bank.info
+
+# ПАО СКБ Приморья "Примсоцбанк" (Рег. № 2733)
+
+pskb.com
+
+# АО КБ "Соколовский" (Рег. № 2830)
+
+astrasend.net
+
+# ООО "ПроКоммерцБанк" (Рег. № 2996)
+
+procombank.com
+
+# РНКО "Платежный Центр" (ООО) (Рег. № 3166)
+
+corona-perevod.com
+coronaperevod.com
+korona-perevod.com
+koronapay.com
+koronaperevod.com
+perevod-korona.biz
+perevod-korona.info
+perevod-korona.org
+perevod-korona.pro
+perevodkorona.com
+korona.com
+
+# ПАО "БАЛТИНВЕСТБАНК" (Рег. № 3176)
+
+baltinvestbank.com
+
+# АО "ПроБанк" (Рег. № 3296)
+
+probank.pro
+
+# АО "Мидзухо Банк (Москва)" (Рег. № 3337)
+
+mizuhogroup.com
+
+# АО "Россельхозбанк" (Рег. № 3349)
+
+rshb.pro
+rusagrobank.com
+
+# АО "Банк Финсервис" (Рег. № 3388)
+
+finsb.com
+
+# "Банк "МБА-МОСКВА" ООО (Рег. № 3395)
+
+granat.az
+
+# ООО "Ю Би Эс Банк" (Рег. № 3463)
+
+ubs.com
+
+# АО "Эм-Ю-Эф-Джи Банк (Евразия)" (Рег. № 3465)
+
+mufg.jp
+
+# НКО НКЦ (АО) (Рег. № 3466)
+
+nationalclearingcenter.com
+nationalclearingcentre.com
+ncc-qccp.com
+
+# АО КБ "ЮНИСТРИМ" (Рег. № 3467)
+
+unistream.com
+
+# ООО "Чайна Констракшн Банк" (Рег. № 3515)
+
+ccb.com
+
+# ООО "Чайнасельхозбанк" (Рег. № 3529)
+
+abchina.com
+
+# ООО "НКО "ЭЛЕКСИР" (Рег. № 3533)
+
+eleksir.finance
+
+# АО "Банк 131" (Рег. № 3538)
+
+bank131.com
+
+# ООО "Банк Точка" (Рег. № 3545)
+
+tochka.com
+
+# ООО РНКО "ЭР Финанс" (Рег. № 3555)
+
+er-fin.com
 

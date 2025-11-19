@@ -1,8 +1,4 @@
-# https://support.apple.com/en-us/HT210060
-
-include:apple-ads
-include:apple-pki
-include:icloud
+# v2ray apple-update
 
 appldnld.apple.com
 configuration.apple.com
@@ -26,6 +22,90 @@ updates.cdn-apple.com
 wkms-public.apple.com
 xp.apple.com
 
+# v2ray apple-ads
+
+api-adservices.apple.com
+iadsdk.apple.com
+iad.apple.com
+qwapi.com
+
+# v2ray apple-pki
+
+certs-lb.apple.com.akadns.net
+certs.apple.com
+crl-lb.apple.com.akadns.net
+crl.apple.com
+ocsp-lb.apple.com.akadns.net
+ocsp.apple.com
+ocsp2-lb.apple.com.akadns.net
+ocsp2.apple.com
+valid.apple.com
+
+# v2ray icloud
+
+apple-icloud.cn
+appleicloud.cn
+applemx-icloud.com
+icloud-apple.cn
+icloud-content.com
+icloud-isupport.com
+icloud-sandbox.com
+icloud.ch
+icloud.com
+icloud.com.cn
+icloud.de
+icloud.ee
+icloud.fi
+icloud.fr
+icloud.hu
+icloud.ie
+icloud.is
+icloud.jp
+icloud.lv
+icloud.net.cn
+icloud.om
+icloud.org
+icloud.pt
+icloud.ro
+icloud.se
+icloud.si
+icloud.sk
+icloud.vn
+icloudads.net
+icloudapple.cn
+icloudbox.net
+icloudbrowser.net
+icloude.com
+icloudhome.com
+icloudmail.net
+icloudmusic.net
+icloudnet.net
+icloudpay.net
+icloudo.com
+icloudo.de
+icloudo.net
+icloudos.de
+icloudos.net
+icloudsecure.net
+icloudsetup.com
+ios-icloud.com
+me.com
+myicloud.net
+mylcloud.net
+wwwicloud.com
+www-cdn.icloud.com.akadns.net
+
+# v2ray icloudprivaterelay
+
+mask-api.icloud.com
+mask-h2.icloud.com
+mask.icloud.com
+
+# CUSTOM
+
+crl3.digicert.com
+crl4.digicert.com
+ocsp.digicert.cn
+ocsp.digicert.com
 push.apple.com
 identity.apple.com
-*.push.apple.com
