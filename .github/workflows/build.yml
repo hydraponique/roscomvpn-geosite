@@ -49,12 +49,12 @@ jobs:
         run: python3 ./domain_rkn.py
 
       - name: Build geosite.dat file
-        run: go run ./ --outputdir=../
+        run: go run ./ --outputdir=./
 
       - name: Move files to publish directory
         run: |
           mkdir publish
-          cp geosite.dat publish
+          cp ./geosite.dat publish
 
       - name: Git push assets to "release" branch
         run: |
