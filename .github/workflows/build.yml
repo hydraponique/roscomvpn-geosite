@@ -54,7 +54,7 @@ jobs:
       - name: Move files to publish directory
         run: |
           mkdir publish
-          cp ./geosite.dat publish
+          cp geosite.dat publish
 
       - name: Git push assets to "release" branch
         run: |
