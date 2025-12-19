@@ -8,7 +8,9 @@ on:
       - "README.md"
       - ".gitignore"
       - "LICENSE"
-      - "**/dependabot.yml"
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -18,19 +20,17 @@ jobs:
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v4
-        with:
-          path: code
 
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version-file: code/go.mod
-          
+          go-version-file: go.mod
+
       - name: Set tag
         run: |
           DAILY_TAG=$(date +%Y%m%d%H%M)
           echo "DAILY_TAG=$DAILY_TAG" >> $GITHUB_ENV
-          
+
       - name: Create Tag
         uses: actions/github-script@v7
         with:
@@ -43,38 +43,39 @@ jobs:
               sha: context.sha
             })
 
-      - name: Build dlc.dat file
-        run: |
-          cd code || exit 1
-          go run ./ --outputdir=../
-          cd ../ && rm -rf code
+      - name: Extraction RKN Domain List
+        env:
+          NO_SKIP: true
+        run: python3 ./domain_rkn.py
 
+      - name: Build geosite.dat file
+        run: go run ./ --outputdir=../
 
       - name: Move files to publish directory
         run: |
           mkdir publish
-          mv ./*.dat publish
-          
+          cp ./geosite.dat publish
+
       - name: Git push assets to "release" branch
         run: |
           cd publish || exit 1
           git init
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "hydraponique"
+          git config --local user.email "hydraponique@users.noreply.github.com"
           git checkout -b release
           git add -A
           git commit -m "${{ env.DAILY_TAG }}"
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f -u origin release
 
-          
+
       - name: Purge jsdelivr CDN
         run: |
           cd publish || exit 1
           for file in $(ls); do
             curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
           done
-          
+
       - name: Publish release
         uses: softprops/action-gh-release@v1
         with:
