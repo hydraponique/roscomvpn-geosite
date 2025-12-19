@@ -8,6 +8,7 @@ on:
       - "README.md"
       - ".gitignore"
       - "LICENSE"
+      - "data/category-rkn"
 
 permissions:
   contents: write
@@ -68,6 +69,14 @@ jobs:
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f -u origin release
 
+      - name: Git push assets to "master" branch
+        run: |
+
+          git config user.email "hydraponique@users.noreply.github.com"
+          git config user.name "hydraponique"
+          git add ./data/category-rkn
+          git commit -m "Update RKN List" || echo "No changes to commit"
+          git push
 
       - name: Purge jsdelivr CDN
         run: |
