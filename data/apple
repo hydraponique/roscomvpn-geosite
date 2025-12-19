@@ -1,4 +1,4 @@
-# v2ray apple-update
+# v2fly apple-update
 
 appldnld.apple.com
 configuration.apple.com
@@ -22,14 +22,14 @@ updates.cdn-apple.com
 wkms-public.apple.com
 xp.apple.com
 
-# v2ray apple-ads
+# v2fly apple-ads
 
 api-adservices.apple.com
 iadsdk.apple.com
 iad.apple.com
 qwapi.com
 
-# v2ray apple-pki
+# v2fly apple-pki
 
 certs-lb.apple.com.akadns.net
 certs.apple.com
@@ -41,7 +41,7 @@ ocsp2-lb.apple.com.akadns.net
 ocsp2.apple.com
 valid.apple.com
 
-# v2ray icloud
+# v2fly icloud
 
 apple-icloud.cn
 appleicloud.cn
