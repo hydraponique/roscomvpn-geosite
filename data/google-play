@@ -1,25 +1,38 @@
+# Google Play PCAP
+
 googleplay.com
-play-fe.googleapis.com
-play-games.googleusercontent.com
-play-lh.googleusercontent.com
-play-apps-features.googleusercontent.com
 play.google.com
+gvt1.com
+play-fe.googleapis.com
+prod-lt-playstoregatewayadapter-pa.googleapis.com
 play.googleapis.com
 playstoregatewayadapter-pa.googleapis.com
-books.google.com
+play-lh.googleusercontent.com
+connectivitycheck.gstatic.com
+android.clients.google.com
+lh3.googleusercontent.com
+android-safebrowsing.google.com
+voledevice-pa.googleapis.com
+play-apps-features.googleusercontent.com
+playconsole.static.usercontent.goog
 
-beacons.gcp.gvt2.com
+
+# Google Play Services PCAP
+
+digitalassetlinks.googleapis.com
+playgateway-pa.googleapis.com
+mtalk.google.com
+googleads.g.doubleclick.net
+infinitedata-pa.googleapis.com
+google-ohttp-relay-safebrowsing.fastly-edge.com
+app-measurement.com
+quake-pa.googleapis.com
+safebrowsing.googleapis.com
+
+
+# OTA Android
 
 ota.googlezip.net
 ota-cache1.googlezip.net
+ota-cache2.googlezip.net
 ota-cache3.googlezip.net
-android.com
-android.apis.google.com
-dl.google.com
-android.googlesource.com
-androidify.com
-android.googleapis.com
-android.clients.google.com
-
-connectivitycheck.gstatic.com
-connectivitycheck.android.com
