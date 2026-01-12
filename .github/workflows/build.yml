@@ -8,7 +8,6 @@ on:
       - "README.md"
       - ".gitignore"
       - "LICENSE"
-      - "data/category-rkn"
 
 permissions:
   contents: write
@@ -44,11 +43,6 @@ jobs:
               sha: context.sha
             })
 
-      - name: Extraction RKN Domain List
-        env:
-          NO_SKIP: true
-        run: python3 ./domain_rkn.py
-
       - name: Build geosite.dat file
         run: go run ./ --outputdir=./
 
@@ -68,15 +62,6 @@ jobs:
           git commit -m "${{ env.DAILY_TAG }}"
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f -u origin release
-
-      - name: Git push assets to "master" branch
-        run: |
-
-          git config user.email "hydraponique@users.noreply.github.com"
-          git config user.name "hydraponique"
-          git add ./data/category-rkn
-          git commit -m "Update RKN List" || echo "No changes to commit"
-          git push
 
       - name: Purge jsdelivr CDN
         run: |
