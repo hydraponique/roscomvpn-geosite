@@ -1,0 +1,25 @@
+# Main domain
+chatgpt.com
+chat.com
+oaistatic.com
+oaiusercontent.com
+openai.com
+sora.com
+
+# CDN & API
+openai.com.cdn.cloudflare.net
+openaiapi-site.azureedge.net
+openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net
+openaicomproductionae4b.blob.core.windows.net
+production-openaicom-storage.azureedge.net
+regexp:^chatgpt-async-webps-prod-\S+-\d+\.webpubsub\.azure\.com$
+
+# tracking
+o33249.ingest.sentry.io
+openaicom.imgix.net
+browser-intake-datadoghq.com
+
+# Advanced Voice
+chatgpt.livekit.cloud
+host.livekit.cloud
+turn.livekit.cloud
