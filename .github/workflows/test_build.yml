@@ -1,0 +1,61 @@
+name: [TEST] Build geosite
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - test
+    paths-ignore:
+      - "README.md"
+      - ".gitignore"
+      - "LICENSE"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout codebase
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Set tag
+        run: |
+          DAILY_TAG=test_$(date +%Y%m%d%H%M)
+          echo "DAILY_TAG=$DAILY_TAG" >> $GITHUB_ENV
+
+      - name: Create Tag
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const {DAILY_TAG} = process.env
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/tags/${DAILY_TAG}`,
+              sha: context.sha
+            })
+
+      - name: Build geosite.dat file
+        run: go run ./ --outputdir=./
+
+      - name: Move files to publish directory
+        run: |
+          mkdir publish
+          cp ./geosite.dat publish
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.DAILY_TAG }}
+          name: ${{ env.DAILY_TAG }}
+          prerelease: true
+          draft: false
+          files: "publish/*"
