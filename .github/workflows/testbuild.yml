@@ -28,7 +28,7 @@ jobs:
 
       - name: Set tag
         run: |
-          DAILY_TAG=test_$(date +%Y%m%d%H%M)
+          DAILY_TAG=$(date +%Y%m%d%H%M)_test
           echo "DAILY_TAG=$DAILY_TAG" >> $GITHUB_ENV
 
       - name: Create Tag
