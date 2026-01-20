@@ -57,5 +57,5 @@ jobs:
           tag_name: ${{ env.DAILY_TAG }}
           name: ${{ env.DAILY_TAG }}
           prerelease: true
-          draft: false
+          draft: true
           files: "publish/*"
