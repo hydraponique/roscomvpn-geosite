@@ -1,8 +1,8 @@
 ext-twitch.tv
 jtvnw.net
 live-video.net
-regexp:^(?!.*(?:^|\.)usher\.ttvnw\.net$).*ttvnw\.net$
-regexp:^(?!.*(?:^|\.)gql\.twitch\.tv$).*twitch\.tv$
+regexp:^(?!.*(?:^|\\.)usher\\.ttvnw\\.net$).*ttvnw\\.net$
+regexp:^(?!.*(?:^|\\.)gql\\.twitch\\.tv$).*twitch\\.tv$
 twitchcdn.net
 twitchsvc.net
 
