@@ -1,28 +1,28 @@
-fast.com
-netflix.ca
-netflix.com
-netflix.net
-netflixinvestor.com
-netflixtechblog.com
-nflxext.com
-nflximg.com
-nflximg.net
-nflxsearch.net
-nflxso.net
-nflxvideo.net
+domain:fast.com
+domain:netflix.ca
+domain:netflix.com
+domain:netflix.net
+domain:netflixinvestor.com
+domain:netflixtechblog.com
+domain:nflxext.com
+domain:nflximg.com
+domain:nflximg.net
+domain:nflxsearch.net
+domain:nflxso.net
+domain:nflxvideo.net
 
 # DNS test
-netflixdnstest0.com
-netflixdnstest1.com
-netflixdnstest2.com
-netflixdnstest3.com
-netflixdnstest4.com
-netflixdnstest5.com
-netflixdnstest6.com
-netflixdnstest7.com
-netflixdnstest8.com
-netflixdnstest9.com
-netflixdnstest10.com
+domain:netflixdnstest0.com
+domain:netflixdnstest1.com
+domain:netflixdnstest2.com
+domain:netflixdnstest3.com
+domain:netflixdnstest4.com
+domain:netflixdnstest5.com
+domain:netflixdnstest6.com
+domain:netflixdnstest7.com
+domain:netflixdnstest8.com
+domain:netflixdnstest9.com
+domain:netflixdnstest10.com
 
 # regular expression
 regexp:(^|\.)apiproxy-device-prod-nlb-.+\.amazonaws\.com$
@@ -30,4 +30,4 @@ regexp:(^|\.)apiproxy-website-nlb-prod-.+\.amazonaws\.com$
 regexp:(^|\.)dualstack\.apiproxy-.+\.amazonaws\.com$
 regexp:(^|\.)dualstack\.ichnaea-web-.+\.amazonaws\.com$
 
-netflix.com.edgesuite.net
+domain:netflix.com.edgesuite.net

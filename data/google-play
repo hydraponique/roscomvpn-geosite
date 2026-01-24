@@ -1,42 +1,42 @@
 # Google Play PCAP
 
-googleplay.com
-play.google.com
-gvt1.com
-play-fe.googleapis.com
-prod-lt-playstoregatewayadapter-pa.googleapis.com
-play.googleapis.com
-playstoregatewayadapter-pa.googleapis.com
-play-lh.googleusercontent.com
-connectivitycheck.gstatic.com
-android.clients.google.com
-lh3.googleusercontent.com
-android-safebrowsing.google.com
-voledevice-pa.googleapis.com
-play-apps-features.googleusercontent.com
-playconsole.static.usercontent.goog
+domain:googleplay.com
+domain:play.google.com
+domain:gvt1.com
+domain:play-fe.googleapis.com
+domain:prod-lt-playstoregatewayadapter-pa.googleapis.com
+domain:play.googleapis.com
+domain:playstoregatewayadapter-pa.googleapis.com
+domain:play-lh.googleusercontent.com
+domain:connectivitycheck.gstatic.com
+domain:android.clients.google.com
+domain:lh3.googleusercontent.com
+domain:android-safebrowsing.google.com
+domain:voledevice-pa.googleapis.com
+domain:play-apps-features.googleusercontent.com
+domain:playconsole.static.usercontent.goog
 
 
 # Google Play Services PCAP
 
-digitalassetlinks.googleapis.com
-playgateway-pa.googleapis.com
-mtalk.google.com
-googleads.g.doubleclick.net
-infinitedata-pa.googleapis.com
-google-ohttp-relay-safebrowsing.fastly-edge.com
-app-measurement.com
-quake-pa.googleapis.com
-safebrowsing.googleapis.com
+domain:digitalassetlinks.googleapis.com
+domain:playgateway-pa.googleapis.com
+domain:mtalk.google.com
+domain:googleads.g.doubleclick.net
+domain:infinitedata-pa.googleapis.com
+domain:google-ohttp-relay-safebrowsing.fastly-edge.com
+domain:app-measurement.com
+domain:quake-pa.googleapis.com
+domain:safebrowsing.googleapis.com
 
 
 # OTA Android
 
-ota.googlezip.net
-ota-cache1.googlezip.net
-ota-cache2.googlezip.net
-ota-cache3.googlezip.net
+domain:ota.googlezip.net
+domain:ota-cache1.googlezip.net
+domain:ota-cache2.googlezip.net
+domain:ota-cache3.googlezip.net
 
 # Android Apps
 
-firebaseinstallations.googleapis.com
+domain:firebaseinstallations.googleapis.com

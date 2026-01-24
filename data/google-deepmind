@@ -1,57 +1,56 @@
 # Google DeepMind
-deepmind.com
-deepmind.google
+domain:deepmind.com
+domain:deepmind.google
 
 # Google Generative Language API
-geller-pa.googleapis.com
-generativelanguage.googleapis.com
-proactivebackend-pa.googleapis.com
-robinfrontend-pa.googleapis.com
+domain:geller-pa.googleapis.com
+domain:generativelanguage.googleapis.com
+domain:proactivebackend-pa.googleapis.com
+domain:robinfrontend-pa.googleapis.com
 
 # Google AI Studio
-ai.google.dev
-alkalicore-pa.clients6.google.com
-alkalimakersuite-pa.clients6.google.com
-webchannel-alkalimakersuite-pa.clients6.google.com
-generativeai.google
-makersuite.google.com
+domain:ai.google.dev
+domain:alkalicore-pa.clients6.google.com
+domain:alkalimakersuite-pa.clients6.google.com
+domain:webchannel-alkalimakersuite-pa.clients6.google.com
+domain:generativeai.google
+domain:makersuite.google.com
 
-ai.studio
-aistudio.google.com
-bard.google.com
-gemini.google
-gemini.google.com
+domain:ai.studio
+domain:aistudio.google.com
+domain:bard.google.com
+domain:gemini.google
+domain:gemini.google.com
 
 # Gemini Code Assist
-# https://docs.cloud.google.com/gemini/docs/codeassist/set-up-gemini
-cloudaicompanion.googleapis.com
-cloudcode-pa.googleapis.com
-daily-cloudcode-pa.googleapis.com
+domain:cloudaicompanion.googleapis.com
+domain:cloudcode-pa.googleapis.com
+domain:daily-cloudcode-pa.googleapis.com
 
 # NotebookLM
-notebooklm-pa.googleapis.com
-notebooklm.googleapis.com
-notebooklm.google
-notebooklm.google.com
+domain:notebooklm-pa.googleapis.com
+domain:notebooklm.googleapis.com
+domain:notebooklm.google
+domain:notebooklm.google.com
 
 # Jules
-jules.google
-jules.google.com
+domain:jules.google
+domain:jules.google.com
 
 # Google AI Labs
-labs.google
-labs.google.com
-aisandbox-pa.googleapis.com
+domain:labs.google
+domain:labs.google.com
+domain:aisandbox-pa.googleapis.com
 
 # Android Studio Gemini Code Assist
-aida.googleapis.com
+domain:aida.googleapis.com
 
 # Opal
-opal.google
-opal.google.com
+domain:opal.google
+domain:opal.google.com
 
 # Antigravity
-antigravity-pa.googleapis.com
-antigravity.googleapis.com
-antigravity.google
-antigravity-unleash.goog
+domain:antigravity-pa.googleapis.com
+domain:antigravity.googleapis.com
+domain:antigravity.google
+domain:antigravity-unleash.goog
