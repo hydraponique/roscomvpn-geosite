@@ -201,10 +201,12 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git reset --hard
+          git clean -fdx
 
           if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null; then
-            git fetch --depth=1 origin "$BRANCH:$BRANCH"
-            git switch "$BRANCH"
+            git fetch --depth=1 origin "$BRANCH"
+            git switch -C "$BRANCH" "origin/$BRANCH"
           else
             git switch --orphan "$BRANCH"
           fi
