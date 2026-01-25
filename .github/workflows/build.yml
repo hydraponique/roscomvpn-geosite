@@ -21,11 +21,22 @@ jobs:
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Checkout geosite builder
+        uses: actions/checkout@v6
+        with:
+          repository: Loyalsoldier/domain-list-custom
+          path: custom
+          fetch-depth: 1
 
       - name: Setup Go
         uses: actions/setup-go@v6
         with:
-          go-version-file: go.mod
+          go-version-file: custom/go.mod
+          cache: true
+          cache-dependency-path: custom/go.sum
 
       - name: Set tag
         if: github.ref_name == 'master'
@@ -46,8 +57,21 @@ jobs:
               sha: context.sha
             })
 
-      - name: Build geosite.dat file
-        run: go run ./ --outputdir=./
+      - name: Build geosite.dat
+        run: |
+          set -euo pipefail
+
+          rm -rf /tmp/community/data /tmp/out
+          mkdir -p /tmp/community/data /tmp/out
+
+          cp -a ./data/. /tmp/community/data/
+
+          pushd custom >/dev/null
+          go run ./ -outputpath=/tmp/out -exportlists= -datapath=/tmp/community/data
+          popd >/dev/null
+
+          test -s /tmp/out/geosite.dat
+          cp -f /tmp/out/geosite.dat ./geosite.dat
 
       - name: Install Mihomo (latest stable)
         env:
@@ -55,7 +79,7 @@ jobs:
         run: |
           set -euo pipefail
           gh release download -R MetaCubeX/mihomo --pattern 'mihomo-linux-amd64*.deb' --dir /tmp
-          sudo apt install -y "$(ls -1 /tmp/mihomo-linux-amd64*.deb | head -n1)"
+          sudo apt-get install -y "$(ls -1 /tmp/mihomo-linux-amd64*.deb | head -n1)"
           rm -f /tmp/mihomo-linux-amd64*.deb
 
       - name: Install sing-box
