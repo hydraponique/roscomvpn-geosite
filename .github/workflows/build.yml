@@ -70,8 +70,8 @@ jobs:
           go run ./ -outputdir=/tmp/out
           popd >/dev/null
 
-          test -s /tmp/out/geosite.dat
-          cp -f /tmp/out/geosite.dat ./geosite.dat
+          test -s /tmp/out/dlc.dat
+          cp -f /tmp/out/dlc.dat ./geosite.dat
 
       - name: Install Mihomo (latest stable)
         env:
