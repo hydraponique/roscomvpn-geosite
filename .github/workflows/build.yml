@@ -27,16 +27,16 @@ jobs:
       - name: Checkout geosite builder
         uses: actions/checkout@v6
         with:
-          repository: Loyalsoldier/domain-list-custom
-          path: custom
+          repository: v2fly/domain-list-community
+          path: community
           fetch-depth: 1
 
       - name: Setup Go
         uses: actions/setup-go@v6
         with:
-          go-version-file: custom/go.mod
+          go-version-file: community/go.mod
           cache: true
-          cache-dependency-path: custom/go.sum
+          cache-dependency-path: community/go.sum
 
       - name: Set tag
         if: github.ref_name == 'master'
@@ -66,8 +66,8 @@ jobs:
 
           cp -a ./data/. /tmp/community/data/
 
-          pushd custom >/dev/null
-          go run ./ -outputpath=/tmp/out -exportlists= -datapath=/tmp/community/data -togfwlist=category-ru
+          pushd community >/dev/null
+          go run ./ -outputdir=/tmp/out
           popd >/dev/null
 
           test -s /tmp/out/geosite.dat
