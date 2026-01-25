@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
+      - test
       - master
     paths-ignore:
       - "README.md"
@@ -19,23 +20,25 @@ jobs:
 
     steps:
       - name: Checkout codebase
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version-file: go.mod
 
       - name: Set tag
+        if: github.ref_name == 'master'
         run: |
           DAILY_TAG=$(date +%Y%m%d%H%M)
           echo "DAILY_TAG=$DAILY_TAG" >> $GITHUB_ENV
 
       - name: Create Tag
-        uses: actions/github-script@v7
+        if: github.ref_name == 'master'
+        uses: actions/github-script@v8
         with:
           script: |
-            const {DAILY_TAG} = process.env
+            const { DAILY_TAG } = process.env
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -46,12 +49,186 @@ jobs:
       - name: Build geosite.dat file
         run: go run ./ --outputdir=./
 
-      - name: Move files to publish directory
+      - name: Install Mihomo (latest stable)
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          mkdir publish
-          cp ./geosite.dat publish
+          set -euo pipefail
+          gh release download -R MetaCubeX/mihomo --pattern 'mihomo-linux-amd64*.deb' --dir /tmp
+          sudo apt install -y "$(ls -1 /tmp/mihomo-linux-amd64*.deb | head -n1)"
+          rm -f /tmp/mihomo-linux-amd64*.deb
+
+      - name: Install sing-box
+        run: |
+          set -euo pipefail
+          curl -fsSL https://sing-box.app/install.sh | sudo sh
+
+      - name: Build .mrs
+        run: |
+          set -euo pipefail
+
+          work=/tmp/mihomo
+          out="$work/rulesets"
+
+          rm -rf "$work"
+          mkdir -p "$out"
+          cp -a ./data/. "$work"/
+
+          find "$work" -path "$out" -prune -o -type f -print0 |
+          while IFS= read -r -d '' f; do
+            tmp="$(mktemp)"
+            awk '
+              function trim(s){ sub(/^[ \t]+/,"",s); sub(/[ \t]+$/,"",s); return s }
+              {
+                gsub(/\r/,"")
+                s=$0
+
+                sub(/[ \t]*#.*/, "", s)
+                sub(/[ \t]*\/\/.*/, "", s)
+                sub(/[ \t]*@.*/, "", s)
+
+                s=trim(s)
+                gsub(/[ \t]+/, "", s)
+                s=tolower(s)
+
+                if (s == "") next
+
+                if (s ~ /^full:/) {
+                  sub(/^full:/, "", s)
+                  if (s != "") print s
+                  next
+                }
+
+                if (s ~ /^domain:/) {
+                  sub(/^domain:/, "", s)
+                  sub(/^\./, "", s)
+                  if (s != "") print "+." s
+                  next
+                }
+
+                if (s ~ /^[a-z0-9_-]+:/) next
+
+                sub(/^\./, "", s)
+                if (s != "") print "+." s
+              }
+            ' "$f" > "$tmp"
+
+            rel="${f#$work/}"
+            rel_noext="${rel%.*}"
+            dest="$out/${rel_noext}.mrs"
+            mkdir -p "$(dirname "$dest")"
+            mihomo convert-ruleset domain text "$tmp" "$dest"
+            rm -f "$tmp"
+          done
+
+      - name: Build sing-box .srs (geosite)
+        run: |
+          set -euo pipefail
+
+          src=/tmp/sing-box/src
+          out=/tmp/sing-box/rulesets
+          rm -rf /tmp/sing-box
+          mkdir -p "$src" "$out"
+          cp -a ./data/. "$src"/
+
+          find "$src" -type f -print0 |
+          while IFS= read -r -d '' f; do
+            tmp_json="$(mktemp)"
+            awk '
+              function trim(s){ sub(/^[ \t]+/,"",s); sub(/[ \t]+$/,"",s); return s }
+              function strip_tail(s){
+                gsub(/\r/,"",s)
+                s=trim(s)
+                sub(/[ \t]*#.*/, "", s)
+                sub(/[ \t]*\/\/.*/, "", s)
+                sub(/[ \t]*@.*/, "", s)
+                return trim(s)
+              }
+              {
+                t = strip_tail($0)
+                if (t == "") next
+                if (t ~ /^\/\//) next
+                if (t ~ /^#/) next
+                if (t ~ /^include:/) next
+
+                if (t ~ /^full:/)   { v=strip_tail(substr(t,6)); sub(/^\./,"",v); if(v!="") print "domain\t"  v; next }
+                if (t ~ /^domain:/) { v=strip_tail(substr(t,8)); sub(/^\./,"",v); if(v!="") print "suffix\t"  v; next }
+                if (t ~ /^keyword:/){ v=strip_tail(substr(t,9));                   if(v!="") print "keyword\t" v; next }
+                if (t ~ /^regexp:/) { v=strip_tail(substr(t,8));                   if(v!="") print "regex\t"   v; next }
+
+                v=t; sub(/^\./,"",v); if(v!="") print "suffix\t" v
+              }
+            ' "$f" | jq -Rn '
+              def add($k; $v): .rules[0][$k] = ((.rules[0][$k] // []) + [$v]);
+              reduce (inputs | split("\t")) as $it ({"version":3,"rules":[{}]};
+                if   $it[0]=="domain"  then add("domain";         $it[1])
+                elif $it[0]=="suffix"  then add("domain_suffix";  $it[1])
+                elif $it[0]=="keyword" then add("domain_keyword"; $it[1])
+                elif $it[0]=="regex"   then add("domain_regex";   $it[1])
+                else . end
+              )
+              | .rules[0] |= with_entries(select(.value | length > 0))
+              | if (.rules[0] | length) == 0 then .rules = [] else . end
+            ' > "$tmp_json"
+
+            rel="${f#$src/}"
+            rel_noext="${rel%.*}"
+            dest="$out/${rel_noext}.srs"
+            mkdir -p "$(dirname "$dest")"
+            sing-box rule-set compile --output "$dest" "$tmp_json"
+            rm -f "$tmp_json"
+          done
+
+      - name: Move files to publish directory (test-release layout)
+        if: github.ref_name != 'master'
+        run: |
+          mkdir -p publish/mihomo publish/sing-box
+          cp ./geosite.dat publish/
+          cp -a /tmp/mihomo/rulesets/.   publish/mihomo/
+          cp -a /tmp/sing-box/rulesets/. publish/sing-box/
+
+      - name: Push artifacts to test-release branch
+        if: github.ref_name != 'master'
+        env:
+          BRANCH: test-release
+        run: |
+          set -euo pipefail
+
+          stash=/tmp/test-release-artifacts
+          rm -rf "$stash"
+          mkdir -p "$stash"
+          cp -a publish/. "$stash"/
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null; then
+            git fetch --depth=1 origin "$BRANCH:$BRANCH"
+            git switch "$BRANCH"
+          else
+            git switch --orphan "$BRANCH"
+          fi
+
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+          cp -a "$stash"/. .
+
+          git add -A
+          git commit -m "Publish $(date -u +%Y%m%d%H%M)" --allow-empty
+          git push origin HEAD:"$BRANCH"
+
+      - name: Move files to publish directory (release layout)
+        if: github.ref_name == 'master'
+        run: |
+          set -euo pipefail
+          rm -rf publish
+          mkdir -p publish
+          cp ./geosite.dat publish/
+
+          tar -czf publish/mihomo.tar.gz   -C /tmp/mihomo/rulesets .
+          tar -czf publish/sing-box.tar.gz -C /tmp/sing-box/rulesets .
 
       - name: Git push assets to "release" branch
+        if: github.ref_name == 'master'
         run: |
           cd publish || exit 1
           git init
@@ -64,6 +241,7 @@ jobs:
           git push -f -u origin release
 
       - name: Purge jsdelivr CDN
+        if: github.ref_name == 'master'
         run: |
           cd publish || exit 1
           for file in $(ls); do
@@ -71,6 +249,7 @@ jobs:
           done
 
       - name: Publish release
+        if: github.ref_name == 'master'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.DAILY_TAG }}
