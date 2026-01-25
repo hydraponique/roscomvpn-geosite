@@ -67,7 +67,7 @@ jobs:
           cp -a ./data/. /tmp/community/data/
 
           pushd custom >/dev/null
-          go run ./ -outputdir=/tmp/out -datapath=/tmp/community/data
+          go run ./ -outputpath=/tmp/out -exportlists= -datapath=/tmp/community/data -togfwlist=category-ru
           popd >/dev/null
 
           test -s /tmp/out/geosite.dat
