@@ -247,8 +247,11 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf publish
-          mkdir -p publish
+          mkdir -p publish/mihomo publish/sing-box
           cp ./geosite.dat publish/
+
+          cp -a /tmp/mihomo/rulesets/.   publish/mihomo/
+          cp -a /tmp/sing-box/rulesets/. publish/sing-box/
 
           tar -czf publish/mihomo.tar.gz   -C /tmp/mihomo/rulesets .
           tar -czf publish/sing-box.tar.gz -C /tmp/sing-box/rulesets .
@@ -282,4 +285,6 @@ jobs:
           name: ${{ env.DAILY_TAG }}
           prerelease: false
           draft: false
-          files: "publish/*"
+          files: |
+            publish/geosite.dat
+            publish/*.tar.gz
