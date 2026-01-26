@@ -61,10 +61,10 @@ jobs:
         run: |
           set -euo pipefail
 
-          rm -rf /tmp/community/data /tmp/out
-          mkdir -p /tmp/community/data /tmp/out
+          rm -rf community/data /tmp/out
+          mkdir -p community/data /tmp/out
 
-          cp -a ./data/. /tmp/community/data/
+          cp -a ./data/. community/data/
 
           pushd community >/dev/null
           go run ./ -outputdir=/tmp/out
