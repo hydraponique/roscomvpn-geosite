@@ -85,7 +85,7 @@ jobs:
       - name: Install sing-box
         run: |
           set -euo pipefail
-          curl -fsSL https://sing-box.app/install.sh | sudo sh
+          curl -fsSL https://sing-box.app/install.sh | sudo -E sh -s -- --version 1.12.12
 
       - name: Build .mrs
         run: |
