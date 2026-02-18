@@ -2,6 +2,10 @@
 
 domain:2ip.ru
 
+# custom ru only
+
+domain:mangalib.me
+
 # v2ray category-gov-ru
 
 domain:emias.info

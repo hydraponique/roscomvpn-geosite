@@ -202,82 +202,59 @@ jobs:
             sing-box rule-set compile --output "$dest" "$tmp_json"
             rm -f "$tmp_json"
           done
-
-      - name: Move files to publish directory (test-release layout)
-        if: github.ref_name != 'master'
-        run: |
-          mkdir -p publish/mihomo publish/sing-box
-          cp ./geosite.dat publish/
-          cp -a /tmp/mihomo/rulesets/.   publish/mihomo/
-          cp -a /tmp/sing-box/rulesets/. publish/sing-box/
-
-      - name: Push artifacts to test-release branch
-        if: github.ref_name != 'master'
-        env:
-          BRANCH: test-release
-        run: |
-          set -euo pipefail
-
-          stash=/tmp/test-release-artifacts
-          rm -rf "$stash"
-          mkdir -p "$stash"
-          cp -a publish/. "$stash"/
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git reset --hard
-          git clean -fdx
-
-          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null; then
-            git fetch --depth=1 origin "$BRANCH"
-            git switch -C "$BRANCH" "origin/$BRANCH"
-          else
-            git switch --orphan "$BRANCH"
-          fi
-
-          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
-          cp -a "$stash"/. .
-
-          git add -A
-          git commit -m "Publish $(date -u +%Y%m%d%H%M)" --allow-empty
-          git push origin HEAD:"$BRANCH"
-
-      - name: Move files to publish directory (release layout)
+          
+      # ===== MASTER BRANCH STEPS =====
+      - name: [MASTER] Prepare release directory and archives
         if: github.ref_name == 'master'
         run: |
           set -euo pipefail
-          rm -rf publish
-          mkdir -p publish/mihomo publish/sing-box
-          cp ./geosite.dat publish/
+          rm -rf release
+          rm -rf /tmp/release
+          mkdir -p release/mihomo release/sing-box
 
-          cp -a /tmp/mihomo/rulesets/.   publish/mihomo/
-          cp -a /tmp/sing-box/rulesets/. publish/sing-box/
+          cp ./geosite.dat release/
+          cp -a /tmp/mihomo/rulesets/.   release/mihomo/
+          cp -a /tmp/sing-box/rulesets/. release/sing-box/
+          rm -f /tmp/mihomo.tar.gz /tmp/sing-box.tar.gz
+          tar -czf /tmp/mihomo.tar.gz   -C release mihomo
+          tar -czf /tmp/sing-box.tar.gz -C release sing-box
+          test -s /tmp/mihomo.tar.gz
+          test -s /tmp/sing-box.tar.gz
+          cp -r release /tmp/release
+          cp -r . /tmp/masterdump
 
-          tar -czf publish/mihomo.tar.gz   -C /tmp/mihomo/rulesets .
-          tar -czf publish/sing-box.tar.gz -C /tmp/sing-box/rulesets .
-
-      - name: Git push assets to "release" branch
+      - name: [MASTER] Push to release branch and update master
         if: github.ref_name == 'master'
         run: |
-          cd publish || exit 1
+          cd release || exit 1
           git init
           git config --local user.name "hydraponique"
           git config --local user.email "hydraponique@users.noreply.github.com"
           git checkout -b release
           git add -A
-          git commit -m "${{ env.DAILY_TAG }}"
+          git commit -m "Release ${{ env.DAILY_TAG }}"
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f -u origin release
-
-      - name: Purge jsdelivr CDN
+          cd .. || exit 1
+          git checkout master
+          rm -rf release
+          cp -r /tmp/release ./release
+          git add release/
+          git commit -m "Release ${{ env.DAILY_TAG }}" || echo "No changes to commit"
+          git push origin master
+          
+      - name: [MASTER] Purge CDN for release and updated master branches
         if: github.ref_name == 'master'
         run: |
-          cd publish || exit 1
-          for file in $(ls); do
-            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
+          set -euo pipefail
+          cd release || exit 1
+          find . -type f -print0 | while IFS= read -r -d '' f; do
+            rel="${f#./}"
+            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@master/release/${rel}"
+            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${rel}"
           done
 
-      - name: Publish release
+      - name: [MASTER] Publish GitHub Release
         if: github.ref_name == 'master'
         uses: softprops/action-gh-release@v1
         with:
@@ -286,5 +263,102 @@ jobs:
           prerelease: false
           draft: false
           files: |
-            publish/geosite.dat
-            publish/*.tar.gz
+            release/geosite.dat
+            release/*.tar.gz
+            
+      # ===== MASTER → TEST SYNC STEPS =====
+      - name: [MASTER→TEST] Prepare release directory for sync test-release branch
+        if: github.ref_name == 'master'
+        run: |
+          set -euo pipefail
+          rm -rf release
+          rm -rf /tmp/release
+          mkdir -p release/mihomo release/sing-box
+
+          cp ./geosite.dat release/
+          cp -a /tmp/mihomo/rulesets/.   release/mihomo/
+          cp -a /tmp/sing-box/rulesets/. release/sing-box/
+          cp -r release /tmp/release
+
+      - name: [MASTER→TEST] Sync test-release from release and test from master
+        if: github.ref_name == 'master'
+        run: |
+          cd release || exit 1
+          git init
+          git config --local user.name "hydraponique"
+          git config --local user.email "hydraponique@users.noreply.github.com"
+          git checkout -b test-release
+          git add -A
+          git commit -m "Test Release $(date -u +%Y%m%d%H%M)"
+          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          git push -f -u origin test-release
+          cd .. || exit 1
+          git checkout test
+          rm -rf ./
+          cp -r /tmp/masterdump ./
+          rm -rf tmp community geosite.dat
+          git add -A
+          git commit -m "Test Release $(date -u +%Y%m%d%H%M)" || echo "No changes to commit"
+          git push origin test
+          
+
+      - name: [MASTER→TEST] Purge CDN for test and test-release branches
+        if: github.ref_name == 'master'
+        run: |
+          set -euo pipefail
+          find . -type f -print0 | while IFS= read -r -d '' f; do
+            rel="${f#./}"
+            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@test/${rel}"
+          done
+          cd release || exit 1
+          find . -type f -print0 | while IFS= read -r -d '' f; do
+            rel="${f#./}"
+            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@test-release/${rel}"
+          done
+          
+      # ===== TEST BRANCH STEPS =====
+      - name: [TEST] Prepare release directory
+        if: github.ref_name == 'test'
+        run: |
+          set -euo pipefail
+          rm -rf release
+          rm -rf /tmp/release
+          mkdir -p release/mihomo release/sing-box
+
+          cp ./geosite.dat release/
+          cp -a /tmp/mihomo/rulesets/.   release/mihomo/
+          cp -a /tmp/sing-box/rulesets/. release/sing-box/
+          cp -r release /tmp/release
+
+      - name: [TEST] Push to test-release branch & update test branch
+        if: github.ref_name == 'test'
+        run: |
+          cd release || exit 1
+          git init
+          git config --local user.name "hydraponique"
+          git config --local user.email "hydraponique@users.noreply.github.com"
+          git checkout -b test-release
+          git add -A
+          git commit -m "Test Release $(date -u +%Y%m%d%H%M)"
+          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          git push -f -u origin test-release
+          cd .. || exit 1
+          git checkout test
+          rm -rf release
+          cp -r /tmp/release ./release
+          git add release/
+          git commit -m "Test Release $(date -u +%Y%m%d%H%M)" || echo "No changes to commit"
+          git push origin test
+          
+
+      - name: [TEST] Purge CDN for test-release and updated test branches
+        if: github.ref_name == 'test'
+        run: |
+          set -euo pipefail
+          cd release || exit 1
+          find . -type f -print0 | while IFS= read -r -d '' f; do
+            rel="${f#./}"
+            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@test/release/${rel}"
+            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@test-release/${rel}"
+          done
+

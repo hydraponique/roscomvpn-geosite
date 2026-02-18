@@ -20,7 +20,7 @@ domain:swscan.apple.com
 domain:updates-http.cdn-apple.com
 domain:updates.cdn-apple.com
 domain:wkms-public.apple.com
-domain:xp.apple.com
+xp.apple.com
 
 # v2fly apple-ads
 
@@ -31,28 +31,26 @@ domain:qwapi.com
 
 # v2fly apple-pki
 
-domain:certs-lb.apple.com.akadns.net
-domain:certs.apple.com
-domain:crl-lb.apple.com.akadns.net
-domain:crl.apple.com
-domain:ocsp-lb.apple.com.akadns.net
-domain:ocsp.apple.com
-domain:ocsp2-lb.apple.com.akadns.net
-domain:ocsp2.apple.com
-domain:valid.apple.com
+certs-lb.apple.com.akadns.net
+certs.apple.com
+crl-lb.apple.com.akadns.net
+crl.apple.com
+ocsp-lb.apple.com.akadns.net
+ocsp.apple.com
+ocsp2-lb.apple.com.akadns.net
+ocsp2.apple.com
+valid.apple.com
 
 # v2fly icloud
 
 domain:apple-icloud.cn
 domain:appleicloud.cn
-domain:applemx-icloud.com
 domain:icloud-apple.cn
 domain:icloud-content.com
 domain:icloud-isupport.com
 domain:icloud-sandbox.com
 domain:icloud.ch
-domain:icloud.com
-domain:icloud.com.cn
+icloud.com
 domain:icloud.de
 domain:icloud.ee
 domain:icloud.fi
@@ -92,14 +90,12 @@ domain:ios-icloud.com
 domain:me.com
 domain:myicloud.net
 domain:mylcloud.net
-domain:wwwicloud.com
-domain:www-cdn.icloud.com.akadns.net
 
 # CUSTOM
 
-domain:crl3.digicert.com
-domain:crl4.digicert.com
-domain:ocsp.digicert.cn
-domain:ocsp.digicert.com
-domain:push.apple.com
-domain:identity.apple.com
+crl3.digicert.com
+crl4.digicert.com
+ocsp.digicert.cn
+ocsp.digicert.com
+push.apple.com
+identity.apple.com

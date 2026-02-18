@@ -49,13 +49,11 @@ domain:onedrive.org
 domain:onedrive.live.com
 domain:storage.live.com
 
-domain:xbox
 domain:gamepass.com
 domain:orithegame.com
 domain:renovacionxboxlive.com
 domain:tellmewhygame.com
 domain:xbox.co
-domain:xbox.com
 domain:xbox.eu
 domain:xbox.org
 domain:xbox360.co
@@ -65,8 +63,6 @@ domain:xbox360.org
 domain:xboxab.com
 domain:xboxgamepass.com
 domain:xboxgamestudios.com
-domain:xboxlive.cn
-domain:xboxlive.com
 domain:xboxone.co
 domain:xboxone.com
 domain:xboxone.eu

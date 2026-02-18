@@ -1,5 +1,5 @@
 domain:pin.it
-domain:pinimg.com
+pinimg.com
 domain:pinterest.at
 domain:pinterest.be
 domain:pinterest.ca
@@ -49,6 +49,4 @@ domain:pinterest.uk
 domain:pinterest.vn
 domain:pinterestmail.com
 
-#CDN
-domain:pinimg.com.cdn.cloudflare.net
 domain:pinterest.map.fastly.net
