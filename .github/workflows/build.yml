@@ -319,3 +319,11 @@ jobs:
             curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@test/release/${rel}"
             curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@test-release/${rel}"
           done
+
+      - name: Trigger routing update
+        if: success() && github.ref_name == 'master'
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.PAT_FOR_ROUTING }}
+          repository: hydraponique/roscomvpn-routing
+          event-type: update-routing-configs
