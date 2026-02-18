@@ -203,7 +203,6 @@ jobs:
             rm -f "$tmp_json"
           done
           
-      # ===== MASTER BRANCH STEPS =====
       - name: [MASTER] Prepare release directory and archives
         if: github.ref_name == 'master'
         run: |
@@ -266,7 +265,6 @@ jobs:
             release/geosite.dat
             release/*.tar.gz
             
-      # ===== MASTER → TEST SYNC STEPS =====
       - name: [MASTER→TEST] Prepare release directory for sync test-release branch
         if: github.ref_name == 'master'
         run: |
@@ -316,7 +314,6 @@ jobs:
             curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@test-release/${rel}"
           done
           
-      # ===== TEST BRANCH STEPS =====
       - name: [TEST] Prepare release directory
         if: github.ref_name == 'test'
         run: |
