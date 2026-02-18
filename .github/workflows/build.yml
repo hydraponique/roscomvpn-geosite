@@ -127,14 +127,22 @@ jobs:
                 if (s ~ /^domain:/) {
                   sub(/^domain:/, "", s)
                   sub(/^\./, "", s)
-                  if (s != "") print "+." s
+                  if (s != "") {
+                    s = "+." s
+                    sub(/\.$/, ".*", s)
+                    print s
+                  }
                   next
                 }
 
                 if (s ~ /^[a-z0-9_-]+:/) next
 
                 sub(/^\./, "", s)
-                if (s != "") print "+." s
+                if (s != "") {
+                  s = "+." s
+                  sub(/\.$/, ".*", s)
+                  print s
+                }
               }
             ' "$f" > "$tmp"
 
