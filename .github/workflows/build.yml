@@ -189,7 +189,7 @@ jobs:
                 if (t ~ /^keyword:/){ v=strip_tail(substr(t,9));                   if(v!="") print "keyword\t" v; next }
                 if (t ~ /^regexp:/) { v=strip_tail(substr(t,8));                   if(v!="") print "regex\t"   v; next }
 
-                v=t; sub(/^\./,"",v); if(v!="") print "suffix\t" v
+                v=t; sub(/^\./,"",v); if(v!="") print "keyword\t" v
               }
             ' "$f" | jq -Rn '
               def add($k; $v): .rules[0][$k] = ((.rules[0][$k] // []) + [$v]);
