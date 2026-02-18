@@ -290,7 +290,7 @@ jobs:
           git push -f -u origin test-release
           cd .. || exit 1
           git checkout -b test
-          rm -rf ./
+          rm -rf * .github
           cp -r /tmp/masterdump ./
           rm -rf tmp community geosite.dat
           git add -A
