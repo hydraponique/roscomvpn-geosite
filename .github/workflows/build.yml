@@ -215,10 +215,10 @@ jobs:
           cp -a /tmp/mihomo/rulesets/.   release/mihomo/
           cp -a /tmp/sing-box/rulesets/. release/sing-box/
           rm -f /tmp/mihomo.tar.gz /tmp/sing-box.tar.gz
-          tar -czf /tmp/mihomo.tar.gz   -C release mihomo
-          tar -czf /tmp/sing-box.tar.gz -C release sing-box
-          test -s /tmp/mihomo.tar.gz
-          test -s /tmp/sing-box.tar.gz
+          tar -czf release/mihomo.tar.gz   -C release mihomo
+          tar -czf release/sing-box.tar.gz -C release sing-box
+          test -s release/mihomo.tar.gz
+          test -s release/sing-box.tar.gz
           cp -r release /tmp/release
 
       - name: MASTER Push to release branch and update master
