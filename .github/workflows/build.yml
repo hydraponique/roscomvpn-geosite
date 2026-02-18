@@ -219,7 +219,6 @@ jobs:
           test -s /tmp/mihomo.tar.gz
           test -s /tmp/sing-box.tar.gz
           cp -r release /tmp/release
-          cp -r . /tmp/masterdump
 
       - name: MASTER Push to release branch and update master
         if: github.ref_name == 'master'
@@ -263,55 +262,6 @@ jobs:
           files: |
             release/geosite.dat
             release/*.tar.gz
-
-      - name: MASTER2TEST Prepare release directory for sync test-release branch
-        if: github.ref_name == 'master'
-        run: |
-          set -euo pipefail
-          rm -rf release
-          rm -rf /tmp/release
-          mkdir -p release/mihomo release/sing-box
-          cp ./geosite.dat release/
-          cp -a /tmp/mihomo/rulesets/.   release/mihomo/
-          cp -a /tmp/sing-box/rulesets/. release/sing-box/
-          cp -r release /tmp/release
-
-      - name: MASTER2TEST Sync test-release from release and test from master
-        if: github.ref_name == 'master'
-        run: |
-          cd release || exit 1
-          git init
-          git config --local user.name "hydraponique"
-          git config --local user.email "hydraponique@users.noreply.github.com"
-          git checkout -b test-release
-          git add -A
-          git commit -m "Merged Master Release $(date -u +%Y%m%d%H%M)"
-          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-          git push -f -u origin test-release
-          cd .. || exit 1
-          git config --local user.name "hydraponique"
-          git config --local user.email "hydraponique@users.noreply.github.com"
-          git checkout -b test
-          rm -rf * .github
-          cp -r /tmp/masterdump ./
-          rm -rf tmp community geosite.dat
-          git add -A
-          git commit -m "Merged Master Release $(date -u +%Y%m%d%H%M)" || echo "No changes to commit"
-          git push origin test
-
-      - name: MASTER2TEST Purge CDN for test and test-release branches
-        if: github.ref_name == 'master'
-        run: |
-          set -euo pipefail
-          find . -type f -print0 | while IFS= read -r -d '' f; do
-            rel="${f#./}"
-            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@test/${rel}"
-          done
-          cd release || exit 1
-          find . -type f -print0 | while IFS= read -r -d '' f; do
-            rel="${f#./}"
-            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@test-release/${rel}"
-          done
 
       - name: TEST Prepare release directory
         if: github.ref_name == 'test'
