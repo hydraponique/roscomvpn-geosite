@@ -289,6 +289,8 @@ jobs:
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f -u origin test-release
           cd .. || exit 1
+          git config --local user.name "hydraponique"
+          git config --local user.email "hydraponique@users.noreply.github.com"
           git checkout -b test
           rm -rf * .github
           cp -r /tmp/masterdump ./
@@ -336,6 +338,8 @@ jobs:
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f -u origin test-release
           cd .. || exit 1
+          git config --local user.name "hydraponique"
+          git config --local user.email "hydraponique@users.noreply.github.com"
           git checkout -b test
           rm -rf release
           cp -r /tmp/release ./release
