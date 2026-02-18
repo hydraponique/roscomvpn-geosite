@@ -294,7 +294,7 @@ jobs:
           cd .. || exit 1
           git config --local user.name "hydraponique"
           git config --local user.email "hydraponique@users.noreply.github.com"
-          git checkout -b test
+          git checkout -B test
           rm -rf release
           cp -r /tmp/release ./release
           git add release/
