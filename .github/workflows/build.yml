@@ -203,7 +203,7 @@ jobs:
             rm -f "$tmp_json"
           done
 
-      - name: [MASTER] Prepare release directory and archives
+      - name: MASTER Prepare release directory and archives
         if: github.ref_name == 'master'
         run: |
           set -euo pipefail
@@ -221,7 +221,7 @@ jobs:
           cp -r release /tmp/release
           cp -r . /tmp/masterdump
 
-      - name: [MASTER] Push to release branch and update master
+      - name: MASTER Push to release branch and update master
         if: github.ref_name == 'master'
         run: |
           cd release || exit 1
@@ -241,7 +241,7 @@ jobs:
           git commit -m "Release ${{ env.DAILY_TAG }}" || echo "No changes to commit"
           git push origin master
 
-      - name: [MASTER] Purge CDN for release and updated master branches
+      - name: MASTER Purge CDN for release and updated master branches
         if: github.ref_name == 'master'
         run: |
           set -euo pipefail
@@ -252,7 +252,7 @@ jobs:
             curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${rel}"
           done
 
-      - name: [MASTER] Publish GitHub Release
+      - name: MASTER Publish GitHub Release
         if: github.ref_name == 'master'
         uses: softprops/action-gh-release@v1
         with:
@@ -264,7 +264,7 @@ jobs:
             release/geosite.dat
             release/*.tar.gz
 
-      - name: [MASTER→TEST] Prepare release directory for sync test-release branch
+      - name: MASTER2TEST Prepare release directory for sync test-release branch
         if: github.ref_name == 'master'
         run: |
           set -euo pipefail
@@ -276,7 +276,7 @@ jobs:
           cp -a /tmp/sing-box/rulesets/. release/sing-box/
           cp -r release /tmp/release
 
-      - name: [MASTER→TEST] Sync test-release from release and test from master
+      - name: MASTER2TEST Sync test-release from release and test from master
         if: github.ref_name == 'master'
         run: |
           cd release || exit 1
@@ -297,7 +297,7 @@ jobs:
           git commit -m "Merged Master Release $(date -u +%Y%m%d%H%M)" || echo "No changes to commit"
           git push origin test
 
-      - name: [MASTER→TEST] Purge CDN for test and test-release branches
+      - name: MASTER2TEST Purge CDN for test and test-release branches
         if: github.ref_name == 'master'
         run: |
           set -euo pipefail
@@ -311,7 +311,7 @@ jobs:
             curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@test-release/${rel}"
           done
 
-      - name: [TEST] Prepare release directory
+      - name: TEST Prepare release directory
         if: github.ref_name == 'test'
         run: |
           set -euo pipefail
@@ -323,7 +323,7 @@ jobs:
           cp -a /tmp/sing-box/rulesets/. release/sing-box/
           cp -r release /tmp/release
 
-      - name: [TEST] Push to test-release branch & update test branch
+      - name: TEST Push to test-release branch & update test branch
         if: github.ref_name == 'test'
         run: |
           cd release || exit 1
@@ -343,7 +343,7 @@ jobs:
           git commit -m "Test Release $(date -u +%Y%m%d%H%M)" || echo "No changes to commit"
           git push origin test
 
-      - name: [TEST] Purge CDN for test-release and updated test branches
+      - name: TEST Purge CDN for test-release and updated test branches
         if: github.ref_name == 'test'
         run: |
           set -euo pipefail
