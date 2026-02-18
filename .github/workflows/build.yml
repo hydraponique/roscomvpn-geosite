@@ -9,6 +9,7 @@ on:
       - "README.md"
       - ".gitignore"
       - "LICENSE"
+      - "release/**"
 
 permissions:
   contents: write
@@ -249,6 +250,7 @@ jobs:
           cd release || exit 1
           find . -type f -print0 | while IFS= read -r -d '' f; do
             rel="${f#./}"
+            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@${{ env.DAILY_TAG }}/release/${rel}"
             curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@master/release/${rel}"
             curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${rel}"
           done
