@@ -18,36 +18,9 @@ domain:showip.net
 
 # Yandex
 
-domain:yandex.aero
-domain:yandex.az
-domain:yandex.co.il
-domain:yandex.com
-domain:yandex.com.am
-domain:yandex.com.ge
-domain:yandex.com.tr
-domain:yandex.com.ua
-domain:yandex.de
-domain:yandex.ee
-domain:yandex.eu
-domain:yandex.fi
-domain:yandex.fr
-domain:yandex.jobs
-domain:yandex.kg
-domain:yandex.kz
-domain:yandex.lt
-domain:yandex.lv
-domain:yandex.md
-domain:yandex.net
-domain:yandex.org
-domain:yandex.pl
-domain:yandex.st
-domain:yandex.sx
-domain:yandex.tj
-domain:yandex.tm
-domain:yandex.uz
+keyword:yandex.
 domain:yandexcloud.net
 domain:yastatic.net
-domain:yandex.ua
 
 # VK Company
 
@@ -77,17 +50,14 @@ domain:mycdn.me
 
 # Tinkoff / Tbank
 
-domain:tinkoff.do
+keyword:tinkoff.
 domain:four-seasons.group
 domain:tbankjob.site
 domain:4epenaxa.com
 domain:tinkoff-digital.com
-domain:tinkoff.tech
 domain:securetpayment.com
 domain:tinkoff-group.com
-domain:tinkoff.cr
 domain:careeny.xyz
-domain:tinkoff.link
 domain:tlnkof.xyz
 domain:tinkoffgroup.com
 domain:drivercard.site
@@ -104,7 +74,6 @@ domain:tlnkoff-open.xyz
 domain:3ds-secure-payment.com
 domain:careery.xyz
 domain:tinkoffreg.site
-domain:tinkoff.cc
 domain:za-group.net
 domain:eginvestments.net
 domain:t-atm.org
@@ -115,13 +84,9 @@ domain:t-capy.org
 domain:posl-t.org
 domain:billapp.org
 domain:womba-t.org
-domain:tinkoff.sg
-domain:tinkoff.ai
 domain:koshelek.app
-domain:tinkoff.biz
 domain:tinkoffmobile.com
 domain:jump.finance
-domain:tinkoff.cloud
 domain:t.finance
 domain:cloudpayments.world
 domain:investlaboratory.com

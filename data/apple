@@ -20,7 +20,7 @@ domain:swscan.apple.com
 domain:updates-http.cdn-apple.com
 domain:updates.cdn-apple.com
 domain:wkms-public.apple.com
-xp.apple.com
+keyword:xp.apple.com
 
 # v2fly apple-ads
 
@@ -31,15 +31,15 @@ domain:qwapi.com
 
 # v2fly apple-pki
 
-certs-lb.apple.com.akadns.net
-certs.apple.com
-crl-lb.apple.com.akadns.net
-crl.apple.com
-ocsp-lb.apple.com.akadns.net
-ocsp.apple.com
-ocsp2-lb.apple.com.akadns.net
-ocsp2.apple.com
-valid.apple.com
+keyword:certs-lb.apple.com.akadns.net
+keyword:certs.apple.com
+keyword:crl-lb.apple.com.akadns.net
+keyword:crl.apple.com
+keyword:ocsp-lb.apple.com.akadns.net
+keyword:ocsp.apple.com
+keyword:ocsp2-lb.apple.com.akadns.net
+keyword:ocsp2.apple.com
+keyword:valid.apple.com
 
 # v2fly icloud
 
@@ -49,26 +49,8 @@ domain:icloud-apple.cn
 domain:icloud-content.com
 domain:icloud-isupport.com
 domain:icloud-sandbox.com
-domain:icloud.ch
-icloud.com
-domain:icloud.de
-domain:icloud.ee
-domain:icloud.fi
-domain:icloud.fr
-domain:icloud.hu
-domain:icloud.ie
-domain:icloud.is
-domain:icloud.jp
-domain:icloud.lv
-domain:icloud.net.cn
-domain:icloud.om
-domain:icloud.org
-domain:icloud.pt
-domain:icloud.ro
-domain:icloud.se
-domain:icloud.si
-domain:icloud.sk
-domain:icloud.vn
+keyword:icloud.
+keyword:icloud.com
 domain:icloudads.net
 domain:icloudapple.cn
 domain:icloudbox.net
@@ -93,9 +75,9 @@ domain:mylcloud.net
 
 # CUSTOM
 
-crl3.digicert.com
-crl4.digicert.com
-ocsp.digicert.cn
-ocsp.digicert.com
-push.apple.com
-identity.apple.com
+keyword:crl3.digicert.com
+keyword:crl4.digicert.com
+keyword:ocsp.digicert.cn
+keyword:ocsp.digicert.com
+keyword:push.apple.com
+keyword:identity.apple.com

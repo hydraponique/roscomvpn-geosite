@@ -1,3 +1,6 @@
+# Includes:
+include:google-deepmind
+
 # Российские сайты, которые ограничивают функционал для российских IP
 domain:4pda.ru
 domain:4pda.to
@@ -10,7 +13,7 @@ domain:habrastorage.org
 # Adobe
 domain:adobe-identity.com
 domain:adobe-services.com
-adobe.com
+keyword:adobe.com
 domain:adobe.io
 domain:adobecc.com
 domain:adobecces.com
@@ -39,17 +42,17 @@ domain:typekit.net
 domain:amd.com
 
 # Autodesk
-autodesk.com
+keyword:autodesk.com
 domain:cdn.web-platform.io
 domain:qualtrics.com
 
 # Basecamp
 domain:37signals.com
-basecamp.com
+keyword:basecamp.com
 domain:basecampapi.com
 
 # Brave
-brave.com
+keyword:brave.com
 
 # Brawl Stars, Clash Royale, Clash of Clans
 domain:brawlstarsgame.com
@@ -60,7 +63,7 @@ domain:supercell.com
 
 # Canva
 domain:canva-apps.com
-canva.com
+keyword:canva.com
 domain:canva.dev
 
 # Cici/Dola
@@ -70,10 +73,10 @@ domain:ciciaicdn.com
 domain:dola.com
 
 # Claude
-anthropic.com
-claude.ai
+keyword:anthropic.com
+keyword:claude.ai
 domain:claudeusercontent.com
-intercom.io
+keyword:intercom.io
 domain:intercomassets.com
 domain:intercomcdn.com
 
@@ -81,13 +84,10 @@ domain:intercomcdn.com
 domain:clickup.com
 
 # DeepL
-domain:deepl.app
-domain:deepl.com
-domain:deepl.de
-domain:deepl.net
+keyword:deepl.
 
 # Deezer
-deezer.com
+keyword:deezer.com
 domain:dzcdn.net
 
 # Dell
@@ -99,42 +99,7 @@ domain:copilot.microsoft.com
 domain:designer.microsoft.com
 
 # Dyson
-domain:dyson.ae
-domain:dyson.at
-domain:dyson.be
-domain:dyson.ca
-domain:dyson.ch
-domain:dyson.cn
-domain:dyson.co.kr
-domain:dyson.co.nz
-domain:dyson.co.uk
-domain:dyson.co.za
-domain:dyson.com
-domain:dyson.com.ar
-domain:dyson.com.au
-domain:dyson.com.br
-domain:dyson.com.sg
-domain:dyson.cz
-domain:dyson.de
-domain:dyson.dk
-domain:dyson.es
-domain:dyson.fi
-domain:dyson.fr
-domain:dyson.gr
-domain:dyson.hk
-domain:dyson.ie
-domain:dyson.in
-domain:dyson.it
-domain:dyson.jp
-domain:dyson.mx
-domain:dyson.nl
-domain:dyson.no
-domain:dyson.pl
-domain:dyson.pt
-domain:dyson.sa
-domain:dyson.se
-domain:dyson.tw
-domain:dyson.us
+keyword:dyson.
 
 # ElevenLabs + ElevenReader
 domain:elevenlabs.io
@@ -146,51 +111,8 @@ domain:fitbit-pa.googleapis.com
 domain:fitbit.google.com
 domain:fitbitvestibuleshim-pa.googleapis.com
 
-# Google DeepMind / Gemini
-domain:deepmind.com
-domain:deepmind.google
-domain:geller-pa.googleapis.com
-domain:generativelanguage.googleapis.com
-domain:proactivebackend-pa.googleapis.com
-domain:robinfrontend-pa.googleapis.com
-domain:ai.google.dev
-domain:alkalicore-pa.clients6.google.com
-domain:alkalimakersuite-pa.clients6.google.com
-domain:webchannel-alkalimakersuite-pa.clients6.google.com
-domain:generativeai.google
-domain:makersuite.google.com
-domain:ai.studio
-domain:aistudio.google.com
-domain:bard.google.com
-gemini.google
-domain:cloudaicompanion.googleapis.com
-domain:cloudcode-pa.googleapis.com
-domain:daily-cloudcode-pa.googleapis.com
-domain:notebooklm-pa.googleapis.com
-domain:notebooklm.googleapis.com
-notebooklm.google
-jules.google
-labs.google
-domain:aisandbox-pa.googleapis.com
-domain:aida.googleapis.com
-opal.google
-domain:antigravity-pa.googleapis.com
-domain:antigravity.googleapis.com
-domain:antigravity.google
-domain:antigravity-unleash.goog
-domain:aitestkitchen.withgoogle.com
-domain:apis.google.com
-domain:assistant-s3-pa.googleapis.com
-domain:developerprofiles-pa.googleapis.com
-domain:lookerstudio.google.com
-domain:o.pki.goog
-domain:people-pa.clients6.google.com
-domain:signaler-pa.clients6.google.com
-domain:suggestqueries.google.com
-domain:waa-pa.clients6.google.com
-
 # Grok
-grok.com
+keyword:grok.com
 domain:grok.x.com
 domain:x.ai
 
@@ -198,157 +120,13 @@ domain:x.ai
 domain:guilded.gg
 
 # Imgur
-imgur.com
+keyword:imgur.com
 
 # Intel
-domain:intel.ac
-domain:intel.ae
-domain:intel.af
-domain:intel.ag
-domain:intel.ai
-domain:intel.ar
-domain:intel.at
-domain:intel.az
-domain:intel.ba
-domain:intel.bg
-domain:intel.bh
-domain:intel.bi
-domain:intel.bo
-domain:intel.bs
-domain:intel.by
-domain:intel.ca
-domain:intel.cc
-domain:intel.cg
-domain:intel.ch
-domain:intel.cl
-domain:intel.cm
-domain:intel.cn
-domain:intel.co.ae
-domain:intel.co.cr
-domain:intel.co.id
-domain:intel.co.il
-domain:intel.co.jp
-domain:intel.co.kr
-domain:intel.co.uk
-domain:intel.co.za
-intel.com
-domain:intel.com.ar
-domain:intel.com.au
-domain:intel.com.bo
-domain:intel.com.br
-domain:intel.com.cn
-domain:intel.com.co
-domain:intel.com.ec
-domain:intel.com.hk
-domain:intel.com.jm
-domain:intel.com.mx
-domain:intel.com.my
-domain:intel.com.pe
-domain:intel.com.ph
-domain:intel.com.pr
-domain:intel.com.py
-domain:intel.com.tr
-domain:intel.com.tw
-domain:intel.com.uy
-domain:intel.com.ve
-domain:intel.cr
-domain:intel.cu
-domain:intel.cz
-domain:intel.de
-domain:intel.dk
-domain:intel.dz
-domain:intel.ec
-domain:intel.ee
-domain:intel.eg
-domain:intel.es
-domain:intel.eu
-domain:intel.fi
-domain:intel.fr
-domain:intel.ga
-domain:intel.gd
-domain:intel.ge
-domain:intel.gl
-domain:intel.gm
-domain:intel.gr
-domain:intel.gs
-domain:intel.gt
-domain:intel.gy
-domain:intel.hk
-domain:intel.hn
-domain:intel.ht
-domain:intel.hu
-domain:intel.ie
-domain:intel.in
-domain:intel.io
-domain:intel.it
-domain:intel.je
-domain:intel.jo
-domain:intel.jp
-domain:intel.ke
-domain:intel.la
-domain:intel.lc
-domain:intel.lk
-domain:intel.lt
-domain:intel.lu
-domain:intel.ly
-domain:intel.ma
-domain:intel.md
-domain:intel.me
-domain:intel.mg
-domain:intel.mk
-domain:intel.mn
-domain:intel.mp
-domain:intel.mt
-domain:intel.mu
-domain:intel.mw
-domain:intel.mx
-domain:intel.my
-domain:intel.ng
-domain:intel.nl
-domain:intel.nu
-domain:intel.nz
-domain:intel.pa
-domain:intel.pe
-domain:intel.ph
-domain:intel.pl
-domain:intel.pn
-domain:intel.re
-domain:intel.ro
-domain:intel.ru
-domain:intel.rw
-domain:intel.sa
-domain:intel.sc
-domain:intel.se
-domain:intel.sg
-domain:intel.si
-domain:intel.sk
-domain:intel.sn
-domain:intel.sr
-domain:intel.st
-domain:intel.sv
-domain:intel.sx
-domain:intel.sy
-domain:intel.tf
-domain:intel.tj
-domain:intel.tl
-domain:intel.tm
-domain:intel.tn
-domain:intel.tt
-domain:intel.tv
-domain:intel.tw
-domain:intel.ua
-domain:intel.uk
-domain:intel.us
-domain:intel.uy
-domain:intel.uz
-domain:intel.vg
-domain:intel.vn
-domain:intel.vu
-domain:intel.wf
-domain:intel.yt
+keyword:intel.
 
 # Jetbrains
-jetbrains.com
+keyword:jetbrains.com
 domain:jetbrains.ai
 domain:jetbrains.space
 domain:myjetbrains.com
@@ -364,10 +142,10 @@ domain:make.com
 
 # Manus
 domain:manus.cdn
-manus.im
+keyword:manus.im
 
 # Meta AI
-meta.ai
+keyword:meta.ai
 domain:llamameta.net
 domain:meta.com
 domain:metademolab.com
@@ -378,10 +156,7 @@ domain:naukri.com
 
 # Netflix
 domain:fast.com
-domain:netflix.ca
-netflix.com
-domain:netflix.com.au
-domain:netflix.net
+keyword:netflix.
 domain:netflixinvestor.com
 domain:netflixstudios.com
 domain:netflixtechblog.com
@@ -392,17 +167,7 @@ domain:nflxsearch.net
 domain:nflxso.net
 domain:nflxvideo.net
 domain:onetrust.com
-domain:netflixdnstest0.com
-domain:netflixdnstest1.com
-domain:netflixdnstest2.com
-domain:netflixdnstest3.com
-domain:netflixdnstest4.com
-domain:netflixdnstest5.com
-domain:netflixdnstest6.com
-domain:netflixdnstest7.com
-domain:netflixdnstest8.com
-domain:netflixdnstest9.com
-domain:netflixdnstest10.com
+keyword:netflixdnstest
 regexp:(^|\.)apiproxy-device-prod-nlb-.+\.amazonaws\.com$
 regexp:(^|\.)apiproxy-website-nlb-prod-.+\.amazonaws\.com$
 regexp:(^|\.)dualstack\.apiproxy-.+\.amazonaws\.com$
@@ -412,32 +177,25 @@ regexp:(^|\.)dualstack\.ichnaea-web-.+\.amazonaws\.com$
 domain:hellonotion.com
 domain:notion-media.com
 domain:notion-static.com
-notion.ai
-notion.com
-notion.dev
-domain:notion.site
-notion.so
-domain:notion.new
+keyword:notion.
 domain:notionup.com
 domain:notionusercontent.com
 domain:splunkcloud.com
-zendesk.com
+keyword:zendesk.com
 domain:zendesk.de
 
 # OpenAI / ChatGPT
-chatgpt.com
+keyword:chatgpt.com
 domain:chat.com
 domain:oaistatic.com
 domain:oaiusercontent.com
-openai.com
+keyword:openai.
 domain:sora.com
 domain:ai.com
 domain:auth0.com
 domain:gpt3-openai.com
 domain:live.net
 domain:livekit.cloud
-domain:openai.fund
-domain:openai.org
 domain:openaiapi-site.azureedge.net
 domain:openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net
 domain:openaicomproductionae4b.blob.core.windows.net
@@ -457,6 +215,31 @@ domain:parsec.app
 # Pixabay
 domain:pixabay.com
 
+# Protonmail
+domain:pm.me
+domain:proton.me
+domain:protonmail.ch
+domain:protonmail.com
+domain:protonstatus.com
+domain:protontech.ch
+domain:protonvpn.ch
+domain:protonvpn.com
+domain:protonweb.com
+
+# Reddit
+keyword:redd.it
+domain:reddit.app.link
+keyword:reddit.com
+domain:redditblog.com
+domain:reddithelp.com
+domain:redditinc.com
+domain:redditmail.com
+domain:redditmedia.com
+domain:redditspace.com
+keyword:redditstatic.com
+domain:redditstatus.com
+domain:reddit.map.fastly.net
+
 # Reve
 domain:reve.art
 
@@ -472,10 +255,10 @@ domain:pscdn.co
 domain:scdn.co
 domain:spoti.fi
 domain:spotify-everywhere.com
-spotify.com
+keyword:spotify.com
 domain:spotify.design
-spotifycdn.com
-spotifycdn.net
+keyword:spotifycdn.com
+keyword:spotifycdn.net
 domain:spotifycharts.com
 domain:spotifycodes.com
 domain:spotifyforbrands.com
@@ -491,70 +274,67 @@ domain:spotify.map.fastly.net
 domain:spotify.map.fastlylb.net
 
 # Strava
-strava.com
+keyword:strava.com
 
 # Tableau
-tableau.com
+keyword:tableau.com
 
 # Tailscale
-tailscale.com
+keyword:tailscale.com
 
 # TeamViewer
-teamviewer.com
+keyword:teamviewer.com
 
 # Tidal
 domain:onetrust.com
 domain:squareup.com
-tidal.com
+keyword:tidal.com
 
 # Tiktok / CapCut / ByteDance
-amemv.com
-bytecdn.cn
-byted.org
-bytedance.com
-bytedance.net
-bytedns.net
-bytefcdn-oversea.com
-bytefcdn-ttpeu.com
-byteglb.com
-byteicdn.com
-byteimg.com
-byteoversea.com
-bytetcdn.com
-capcut.com
-hypstarcdn.com
-ibytedtos.com
-ibyteimg.com
-ipstatp.com
-isnssdk.com
-muscdn.com
-musical.ly
-pstatp.com
-snssdk.com
-tiktok-row.net
-tiktok-row.org
-tiktok.com
-tiktok.in
-tiktok.net
-tiktok.org
-tiktokcdn-eu.com
-tiktokcdn-eu.net
-tiktokcdn-in.com
-tiktokcdn-us.com
-tiktokcdn.com
-tiktokd.net
-tiktokd.org
-tiktokeu-cdn.com
-tiktoklb.eu
-tiktokpangle-cdn-us.com
-tiktokrow-cdn.com
-tiktokv.com
-tiktokv.eu
-tiktokv.us
-tiktokw.eu
-tiktokw.us
-tlivecdn.com
-ttlivecdn.com
+keyword:amemv.com
+keyword:bytecdn.cn
+keyword:byted.org
+keyword:bytedance.com
+keyword:bytedance.net
+keyword:bytedns.net
+keyword:bytefcdn-oversea.com
+keyword:bytefcdn-ttpeu.com
+keyword:byteglb.com
+keyword:byteicdn.com
+keyword:byteimg.com
+keyword:byteoversea.com
+keyword:bytetcdn.com
+keyword:capcut.com
+keyword:hypstarcdn.com
+keyword:ibytedtos.com
+keyword:ibyteimg.com
+keyword:ipstatp.com
+keyword:isnssdk.com
+keyword:muscdn.com
+keyword:musical.ly
+keyword:pstatp.com
+keyword:snssdk.com
+keyword:tiktok-row.net
+keyword:tiktok-row.org
+keyword:tiktok.
+keyword:tiktokcdn-eu.com
+keyword:tiktokcdn-eu.net
+keyword:tiktokcdn-in.com
+keyword:tiktokcdn-us.com
+keyword:tiktokcdn.com
+keyword:tiktokd.net
+keyword:tiktokd.org
+keyword:tiktokeu-cdn.com
+keyword:tiktoklb.eu
+keyword:tiktokpangle-cdn-us.com
+keyword:tiktokrow-cdn.com
+keyword:tiktokv.com
+keyword:tiktokv.eu
+keyword:tiktokv.us
+keyword:tiktokw.eu
+keyword:tiktokw.us
+keyword:tlivecdn.com
+keyword:ttlivecdn.com
 domain:bdurl.net
 domain:bytedanceapi.com
 domain:bytedapm.com
@@ -618,25 +398,25 @@ domain:bytedance.map.fastly.net
 domain:theaudiodb.com
 domain:themoviedb.org
 domain:tmdb-image-prod.b-cdn.net
-tmdb.com
-tmdb.org
+keyword:tmdb.com
+keyword:tmdb.org
 
 # Truth Social
-truthsocial.com
+keyword:truthsocial.com
 
 # WB Games
 domain:wbagora.com
-wbgames.com
+keyword:wbgames.com
 
 # Weather.com
-weather.com
+keyword:weather.com
 
 # Windsurf
 domain:codeium.com
 domain:windsurf.com
 
 # WorkOS
-workos.com
+keyword:workos.com
 
 # Xbox
 domain:auth.xboxlive.com
@@ -647,11 +427,11 @@ domain:sydney.bing.com
 domain:xboxdesignlab.xbox.com
 
 # Xerox
-xerox.com
+keyword:xerox.com
 
 # Zapier
 domain:zapier-deployment.com
-zapier.com
+keyword:zapier.com
 
 # Остальное
 domain:2407.pl
@@ -682,7 +462,7 @@ domain:ansys.com
 domain:anythingllm.com
 domain:apiary.io
 domain:aplawrence.com
-archive.org
+keyword:archive.org
 domain:atlassian.com
 domain:att.com
 domain:atwiki.jp
@@ -770,8 +550,8 @@ domain:digitalcontent.sky
 domain:disctech.com
 domain:disneyplus.com
 domain:dnb.com
-docker.io
-docs.rw
+keyword:docker.io
+keyword:docs.rw
 domain:ducati.com
 domain:e-hentai.org
 domain:easyjet.com
@@ -838,15 +618,15 @@ domain:grazie.ai
 domain:groq.com
 domain:groupon.com
 domain:grouponcdn.com
-happ.su
-happ-proxy.com
+keyword:happ.su
+keyword:happ-proxy.com
 domain:hashicorp.com
 domain:hashkey.com
 domain:haydaygame.com
 domain:hbomax.com
 domain:healthline.com
-heroku.com
-herokucdn.com
+keyword:heroku.com
+keyword:herokucdn.com
 domain:hex-rays.com
 domain:hollisterco.com
 domain:home-connect.cn
@@ -871,7 +651,7 @@ domain:infineon.com
 domain:informit.com
 domain:insanelymac.com
 domain:insideevs.com
-intellij.net
+keyword:intellij.net
 domain:intellipaat.com
 domain:intuitibits.com
 domain:iperf3serverlist.net
@@ -931,8 +711,8 @@ domain:middlewareinventory.com
 domain:militarnyi.com
 domain:mixcloud.com
 domain:moneypuck.com
-mongodb.com
-mongodb.net
+keyword:mongodb.com
+keyword:mongodb.net
 domain:monoprice.com
 domain:monotype.com
 domain:monotypefonts.com
@@ -947,17 +727,17 @@ domain:myrotvorets.center
 domain:nba.com
 domain:neo4j.com
 domain:netgate.com
-netlify.com
+keyword:netlify.com
 domain:newark.com
 domain:nfl.com
-ngrok.com
+keyword:ngrok.com
 domain:nike.com
 domain:nitropdf.com
 domain:nordaccount.com
 domain:nordcdn.com
 domain:nordvpn.com
-norton.com
-nvidia.com
+keyword:norton.com
+keyword:nvidia.com
 domain:nxp.com
 domain:oasis.app
 domain:oclc.org
@@ -1019,11 +799,11 @@ domain:reactflow.dev
 domain:readdle.com
 domain:readybot.io
 domain:recraft.ai
-domain:redis.com
-redis.io
+keyword:redis.com
+keyword:redis.io
 domain:refinitiv.com
 domain:reka.ai
-remna.st
+keyword:remna.st
 domain:res.cloudinary.com
 domain:research.net
 domain:resp.app
@@ -1049,7 +829,7 @@ domain:securitytrails.com
 domain:seekvectorlogo.net
 domain:semrush.com
 domain:sendy.jp
-sentry.io
+keyword:sentry.io
 domain:sephora.com
 domain:serato.com
 domain:serialcart.com
@@ -1130,12 +910,7 @@ domain:undress.cc
 domain:upwork.com
 domain:vagrantcloud.com
 domain:vaio.com
-domain:vans.com
-domain:vans.de
-domain:vans.fr
-domain:vans.it
-domain:vans.nl
-domain:vans.se
+keyword:vans.
 domain:vectorworks.net
 domain:veeam.com
 domain:veritas.com

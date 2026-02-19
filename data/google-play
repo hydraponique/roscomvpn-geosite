@@ -1,11 +1,11 @@
 # Google Play PCAP
 
-googleplay.com
-play.google.com
+keyword:googleplay.com
+keyword:play.google.com
 domain:gvt1.com
 domain:play-fe.googleapis.com
 domain:prod-lt-playstoregatewayadapter-pa.googleapis.com
-play.googleapis.com
+keyword:play.googleapis.com
 domain:playstoregatewayadapter-pa.googleapis.com
 domain:play-lh.googleusercontent.com
 domain:connectivitycheck.gstatic.com

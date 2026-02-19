@@ -1,14 +1,14 @@
-windowsupdate.com
-wns.windows.com
-adl.windows.com
+keyword:windowsupdate.com
+keyword:wns.windows.com
+keyword:adl.windows.com
 domain:windows.com.akadns.net
 domain:arc-apac.msn.com
-mp.microsoft.com
-ws.microsoft.com
-store.core.windows.net
+keyword:mp.microsoft.com
+keyword:ws.microsoft.com
+keyword:store.core.windows.net
 domain:definitionupdates.microsoft.com
-download.microsoft.com
-update.microsoft.com
+keyword:download.microsoft.com
+keyword:update.microsoft.com
 domain:update.microsoft.com.akadns.net
 domain:mp.microsoft.com.nsatc.net
 domain:frontdoor.bigcatalog.commerce.microsoft.com
@@ -17,14 +17,14 @@ domain:wns.notify.trafficmanager.net
 domain:skydrivesync.policies.live.net
 domain:spo-ring.msedge.net
 
-windowsupdate.microsoft.com
+keyword:windowsupdate.microsoft.com
 domain:wustat.windows.com
 domain:ntservicepack.microsoft.com
 domain:go.microsoft.com
 
 domain:stats.microsoft.com
 domain:amupdatedl.microsoft.com
-data.microsoft.com
+keyword:data.microsoft.com
 domain:smartscreen-prod.microsoft.com
 
 domain:api.cdp.microsoft.com
