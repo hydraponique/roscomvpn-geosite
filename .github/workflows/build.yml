@@ -336,3 +336,10 @@ jobs:
           token: ${{ secrets.PAT_FOR_ROUTING }}
           repository: hydraponique/roscomvpn-routing
           event-type: update-routing-configs
+          
+      - name: Generate checksum for geosite.dat
+        uses: jmgilman/actions-generate-checksum@v1
+        with:
+          patterns: |
+            release/geosite.dat
+          output: checksum
