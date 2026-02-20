@@ -126,8 +126,9 @@ jobs:
 
                 if (s ~ /^keyword:/) {
                   sub(/^keyword:/, "", s)
+                  sub(/^\./, "", s)
                   if (s != "") {
-                    s = "+" s
+                    s = "+." s
                     sub(/\.$/, ".*", s)
                     print s
                   }
@@ -147,8 +148,9 @@ jobs:
 
                 if (s ~ /^[a-z0-9_-]+:/) next
 
+                sub(/^\./, "", s)
                 if (s != "") {
-                  s = "+" s
+                  s = "+." s
                   sub(/\.$/, ".*", s)
                   print s
                 }
