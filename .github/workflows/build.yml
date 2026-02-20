@@ -236,7 +236,7 @@ jobs:
           tar -czf release/sing-box.tar.gz -C release sing-box
           test -s release/mihomo.tar.gz
           test -s release/sing-box.tar.gz
-          sha256sum /release/geosite.dat > /release/geosite.dat.sha256
+          sha256sum release/geosite.dat > release/geosite.dat.sha256
           cp -r release /tmp/release
 
       - name: MASTER Push to release branch and update master
@@ -295,7 +295,7 @@ jobs:
           cp ./geosite.dat release/
           cp -a /tmp/mihomo/rulesets/.   release/mihomo/
           cp -a /tmp/sing-box/rulesets/. release/sing-box/
-          sha256sum /release/geosite.dat > /release/geosite.dat.sha256
+          sha256sum release/geosite.dat > release/geosite.dat.sha256
           cp -r release /tmp/release
 
       - name: TEST Push to test-release branch & update test branch
