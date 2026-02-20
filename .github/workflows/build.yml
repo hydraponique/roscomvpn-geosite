@@ -283,6 +283,7 @@ jobs:
           draft: false
           files: |
             release/geosite.dat
+            release/geosite.dat.sha256
             release/*.tar.gz
 
       - name: TEST Prepare release directory
