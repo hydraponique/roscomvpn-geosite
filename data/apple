@@ -1,5 +1,6 @@
 # v2fly apple-update
 
+domain:captive.apple.com
 domain:appldnld.apple.com
 domain:configuration.apple.com
 domain:fcs-keys-pub-prod.cdn-apple.com
