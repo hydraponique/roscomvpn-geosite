@@ -1,10 +1,13 @@
+# That domains commented, because patrically banned in RU
+# domain:play.googleapis.com
+# domain:gvt1.com
+
 # Google Play PCAP
 
 keyword:googleplay.com
 keyword:play.google.com
 domain:play-fe.googleapis.com
 domain:prod-lt-playstoregatewayadapter-pa.googleapis.com
-keyword:play.googleapis.com
 domain:playstoregatewayadapter-pa.googleapis.com
 domain:play-lh.googleusercontent.com
 domain:connectivitycheck.gstatic.com
