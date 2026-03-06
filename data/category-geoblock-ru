@@ -1,6 +1,3 @@
-# Includes:
-include:google-deepmind
-
 # Российские сайты, которые ограничивают функционал для российских IP
 domain:4pda.ru
 domain:4pda.to
@@ -111,6 +108,69 @@ domain:api.fitbit.com
 domain:fitbit-pa.googleapis.com
 domain:fitbit.google.com
 domain:fitbitvestibuleshim-pa.googleapis.com
+
+# Google DeepMind (Gemini)
+domain:deepmind.com
+domain:deepmind.google
+
+# Google DeepMind - Google Generative Language API
+domain:geller-pa.googleapis.com
+domain:generativelanguage.googleapis.com
+domain:proactivebackend-pa.googleapis.com
+domain:robinfrontend-pa.googleapis.com
+
+# Google DeepMind - Google AI Studio
+domain:ai.google.dev
+domain:generativeai.google
+domain:makersuite.google.com
+domain:ai.studio
+domain:aistudio.google.com
+domain:bard.google.com
+domain:gemini.google
+domain:gemini.google.com
+
+# Google DeepMind - Gemini Code Assist
+domain:cloudaicompanion.googleapis.com
+domain:cloudcode-pa.googleapis.com
+domain:daily-cloudcode-pa.googleapis.com
+
+# Google DeepMind - NotebookLM
+domain:notebooklm-pa.googleapis.com
+domain:notebooklm.googleapis.com
+domain:notebooklm.google
+domain:notebooklm.google.com
+
+# Google DeepMind - Jules
+domain:jules.google
+domain:jules.google.com
+
+# Google DeepMind - Google AI Labs
+domain:labs.google
+domain:labs.google.com
+domain:aisandbox-pa.googleapis.com
+
+# Google DeepMind - Android Studio Gemini Code Assist
+domain:aida.googleapis.com
+
+# Google DeepMind - Opal
+domain:opal.google
+domain:opal.google.com
+
+# Google DeepMind - Antigravity
+domain:antigravity-pa.googleapis.com
+domain:antigravity.googleapis.com
+domain:antigravity.google
+domain:antigravity-unleash.goog
+
+# Google DeepMind - Other
+domain:clients6.google.com
+domain:aitestkitchen.withgoogle.com
+domain:apis.google.com
+domain:assistant-s3-pa.googleapis.com
+domain:developerprofiles-pa.googleapis.com
+domain:lookerstudio.google.com
+domain:o.pki.goog
+domain:suggestqueries.google.com
 
 # Grok
 keyword:grok.com
