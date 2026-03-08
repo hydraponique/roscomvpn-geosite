@@ -322,7 +322,6 @@ jobs:
         if: github.ref_name == 'master'
         run: |
           set -euo pipefail
-          rm -rf release
           mkdir -p release/mihomo release/sing-box
           cp ./geosite.dat release/
           cp -a /tmp/mihomo/rulesets/.   release/mihomo/
@@ -342,7 +341,7 @@ jobs:
           git config --local user.name "hydraponique"
           git config --local user.email "hydraponique@users.noreply.github.com"
           git checkout -b release
-          git add -A
+          git add --ignore-removal .
           git commit -m "Release ${{ env.DAILY_TAG }}"
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f -u origin release
@@ -350,7 +349,7 @@ jobs:
           git config --local user.name "hydraponique"
           git config --local user.email "hydraponique@users.noreply.github.com"
           git checkout master
-          git add release/
+          git add --ignore-removal release/
           git commit -m "Release ${{ env.DAILY_TAG }}" || echo "No changes to commit"
           git push origin master
 
@@ -384,7 +383,6 @@ jobs:
         if: github.ref_name == 'test'
         run: |
           set -euo pipefail
-          rm -rf release
           mkdir -p release/mihomo release/sing-box
           cp ./geosite.dat release/
           cp -a /tmp/mihomo/rulesets/.   release/mihomo/
@@ -399,7 +397,7 @@ jobs:
           git config --local user.name "hydraponique"
           git config --local user.email "hydraponique@users.noreply.github.com"
           git checkout -b test-release
-          git add -A
+          git add --ignore-removal .
           git commit -m "Test Release $(date -u +%Y%m%d%H%M)"
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f -u origin test-release
@@ -407,7 +405,7 @@ jobs:
           git config --local user.name "hydraponique"
           git config --local user.email "hydraponique@users.noreply.github.com"
           git checkout -B test
-          git add release/
+          git add --ignore-removal release/
           git commit -m "Test Release $(date -u +%Y%m%d%H%M)" || echo "No changes to commit"
           git push origin test
 
