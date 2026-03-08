@@ -89,7 +89,7 @@ jobs:
           set -euo pipefail
           ${{ env.CURL }} -fsSL https://sing-box.app/install.sh | sudo -E sh -s -- --version 1.12.12
 
-      - name: Build .mrs
+      - name: Build .mrs and .yaml
         run: |
           set -euo pipefail
 
@@ -102,7 +102,9 @@ jobs:
 
           find "$work" -path "$out" -prune -o -type f -print0 |
           while IFS= read -r -d '' f; do
-            tmp="$(mktemp)"
+            tmp_mrs="$(mktemp)"
+            tmp_yaml="$(mktemp)"
+
             awk '
               function trim(s){ sub(/^[ \t]+/,"",s); sub(/[ \t]+$/,"",s); return s }
               {
@@ -121,18 +123,8 @@ jobs:
 
                 if (s ~ /^full:/) {
                   sub(/^full:/, "", s)
-                  if (s != "") print s
-                  next
-                }
-
-                if (s ~ /^keyword:/) {
-                  sub(/^keyword:/, "", s)
                   sub(/^\./, "", s)
-                  if (s != "") {
-                    s = "+." s
-                    sub(/\.$/, ".*", s)
-                    print s
-                  }
+                  if (s != "") print s
                   next
                 }
 
@@ -148,22 +140,122 @@ jobs:
                 }
 
                 if (s ~ /^[a-z0-9_-]+:/) next
+              }
+            ' "$f" > "$tmp_mrs"
 
-                sub(/^\./, "", s)
+            # Process for .yaml: keyword, regexp, and plain domain strings
+            awk '
+              function trim(s){ sub(/^[ \t]+/,"",s); sub(/[ \t]+$/,"",s); return s }
+              # Remove only positive i while preserving local -i sections.
+              function strip_positive_i(flags,    out, j, c, prev) {
+                out = ""
+                for (j = 1; j <= length(flags); j++) {
+                  c = substr(flags, j, 1)
+                  prev = (j > 1 ? substr(flags, j - 1, 1) : "")
+                  if (c == "i" && prev != "-") continue
+                  out = out c
+                }
+                return out
+              }
+              function clean_regex(r,    has_minus_i, done, rest, grp, inner, cleaned, repl) {
+                has_minus_i = (r ~ /\(\?[a-z-]*-i[a-z-]*\)/ || r ~ /\(\?[a-z-]*-i[a-z-]*:/)
+                # scoped (?flags:...) — accumulate into done/rest to avoid re-matching
+                done = ""; rest = r
+                while (match(rest, /\(\?[a-z-]+:/)) {
+                  grp   = substr(rest, RSTART, RLENGTH)
+                  inner = substr(grp, 3, length(grp) - 3)
+                  cleaned = strip_positive_i(inner)
+                  gsub(/--+/, "-", cleaned)
+                  sub(/-$/, "", cleaned)
+                  if (cleaned == "-") cleaned = ""
+                  repl = (cleaned == "") ? "(?:" : "(?" cleaned ":"
+                  done = done substr(rest, 1, RSTART - 1) repl
+                  rest = substr(rest, RSTART + RLENGTH)
+                }
+                r = done rest
+                # unscoped (?flags) — same accumulator trick
+                done = ""; rest = r
+                while (match(rest, /\(\?[a-z-]+\)/)) {
+                  grp   = substr(rest, RSTART, RLENGTH)
+                  inner = substr(grp, 3, length(grp) - 3)
+                  cleaned = strip_positive_i(inner)
+                  gsub(/--+/, "-", cleaned)
+                  sub(/-$/, "", cleaned)
+                  if (cleaned == "-") cleaned = ""
+                  repl = (cleaned == "") ? "" : "(?" cleaned ")"
+                  done = done substr(rest, 1, RSTART - 1) repl
+                  rest = substr(rest, RSTART + RLENGTH)
+                }
+                r = done rest
+                if (has_minus_i) return r
+                return tolower(r)
+              }
+              {
+                gsub(/\r/,"")
+                s=$0
+
+                sub(/[ \t]*#.*/, "", s)
+                sub(/[ \t]*\/\/.*/, "", s)
+                sub(/[ \t]*@.*/, "", s)
+
+                s=trim(s)
+                s_raw=s
+                s=tolower(s)
+
+                if (s == "") next
+
+                if (s ~ /^keyword:/) {
+                  v=s
+                  sub(/^keyword:/, "", v)
+                  sub(/^\./, "", v)
+                  if (v != "") {
+                    print "DOMAIN-KEYWORD," v
+                  }
+                  next
+                }
+
+                if (s ~ /^regexp:/) {
+                  v=s_raw
+                  sub(/^[Rr][Ee][Gg][Ee][Xx][Pp]:/, "", v)
+                  v=trim(v)
+                  v=clean_regex(v)
+                  if (v != "") {
+                    print "DOMAIN-REGEX," v
+                  }
+                  next
+                }
+
+                if (s ~ /^full:/) next
+                if (s ~ /^domain:/) next
+                if (s ~ /^[a-z0-9_-]+:/) next
+
                 if (s != "") {
-                  s = "+." s
-                  sub(/\.$/, ".*", s)
-                  print s
+                  print "DOMAIN-KEYWORD," s
                 }
               }
-            ' "$f" > "$tmp"
+            ' "$f" > "$tmp_yaml"
 
             rel="${f#$work/}"
             rel_noext="${rel%.*}"
-            dest="$out/${rel_noext}.mrs"
-            mkdir -p "$(dirname "$dest")"
-            mihomo convert-ruleset domain text "$tmp" "$dest"
-            rm -f "$tmp"
+
+            # Build .mrs from full and domain
+            dest_mrs="$out/${rel_noext}.mrs"
+            if [ -s "$tmp_mrs" ]; then
+              mkdir -p "$(dirname "$dest_mrs")"
+              mihomo convert-ruleset domain text "$tmp_mrs" "$dest_mrs"
+            fi
+
+            # Build .yaml from keyword, regexp, and plain domains
+            dest_yaml="$out/${rel_noext}.yaml"
+            if [ -s "$tmp_yaml" ]; then
+              mkdir -p "$(dirname "$dest_yaml")"
+              {
+                echo "payload:"
+                sed "s/^/  - '/" "$tmp_yaml" | sed "s/$/'/"
+              } > "$dest_yaml"
+            fi
+
+            rm -f "$tmp_mrs" "$tmp_yaml"
           done
 
       - name: Build sing-box .srs (geosite)
