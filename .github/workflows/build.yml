@@ -140,6 +140,12 @@ jobs:
                 }
 
                 if (s ~ /^[a-z0-9_-]+:/) next
+
+                sub(/^\./, "", s)
+                if (s != "") {
+                  s = "+." s
+                  print s
+                }
               }
             ' "$f" > "$tmp_mrs"
 
@@ -228,10 +234,6 @@ jobs:
                 if (s ~ /^full:/) next
                 if (s ~ /^domain:/) next
                 if (s ~ /^[a-z0-9_-]+:/) next
-
-                if (s != "") {
-                  print "DOMAIN-KEYWORD," s
-                }
               }
             ' "$f" > "$tmp_yaml"
 
@@ -293,7 +295,7 @@ jobs:
                 if (t ~ /^keyword:/){ v=strip_tail(substr(t,9));                   if(v!="") print "keyword\t" v; next }
                 if (t ~ /^regexp:/) { v=strip_tail(substr(t,8));                   if(v!="") print "regex\t"   v; next }
 
-                v=t; sub(/^\./,"",v); if(v!="") print "keyword\t" v
+                v=t; sub(/^\./, "", v); if(v!="") print "suffix\t" v
               }
             ' "$f" | jq -Rn '
               def add($k; $v): .rules[0][$k] = ((.rules[0][$k] // []) + [$v]);
