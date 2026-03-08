@@ -1,0 +1,11 @@
+payload:
+  - 'DOMAIN-KEYWORD,windowsupdate.com'
+  - 'DOMAIN-KEYWORD,wns.windows.com'
+  - 'DOMAIN-KEYWORD,adl.windows.com'
+  - 'DOMAIN-KEYWORD,mp.microsoft.com'
+  - 'DOMAIN-KEYWORD,ws.microsoft.com'
+  - 'DOMAIN-KEYWORD,store.core.windows.net'
+  - 'DOMAIN-KEYWORD,download.microsoft.com'
+  - 'DOMAIN-KEYWORD,update.microsoft.com'
+  - 'DOMAIN-KEYWORD,windowsupdate.microsoft.com'
+  - 'DOMAIN-KEYWORD,data.microsoft.com'
