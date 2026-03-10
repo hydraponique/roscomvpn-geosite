@@ -1,8 +1,0 @@
-payload:
-  - 'DOMAIN-KEYWORD,ghcr.io'
-  - 'DOMAIN-KEYWORD,git.io'
-  - 'DOMAIN-KEYWORD,github.com'
-  - 'DOMAIN-KEYWORD,github.io'
-  - 'DOMAIN-KEYWORD,githubassets.com'
-  - 'DOMAIN-KEYWORD,githubusercontent.com'
-  - 'DOMAIN-REGEX,^github-production-release-asset-[0-9a-za-z]{6}\.s3\.amazonaws\.com$'
