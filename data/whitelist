@@ -142,21 +142,27 @@ domain:surgut.ru
 domain:yamal.ru
 domain:zdrav10.ru
 
-# Mass keywords: (note: VK - Manual, coz short domain, may cause cross invalid detection!)
-
-keyword:2gis.
-keyword:alfa-bank.
-keyword:alfa.
-keyword:alfabank.
-keyword:yandex.
-
-# Unsorted custom from: https://github.com/kirilllavrov/RU-domain-list-for-whitelist and https://github.com/hxehex/russia-mobile-internet-whitelist/
+# Unsorted custom from: https://github.com/kirilllavrov/RU-domain-list-for-whitelist + https://github.com/hxehex/russia-mobile-internet-whitelist/ + v2ray + custom by me
 
 domain:1c-bitrix.ru
 domain:1c.ru
 domain:1cfresh.com
 domain:1cloud.ru
 domain:1internet.tv
+domain:2gis.ae
+domain:2gis.am
+domain:2gis.az
+domain:2gis.by
+domain:2gis.com
+domain:2gis.com.cy
+domain:2gis.cz
+domain:2gis.ge
+domain:2gis.kg
+domain:2gis.kz
+domain:2gis.ru
+domain:2gis.tj
+domain:2gis.ua
+domain:2gis.uz
 domain:47news.ru
 domain:4meeting.me
 domain:5ka.ru
@@ -166,10 +172,14 @@ domain:aclub.ru
 domain:adfox.ru
 domain:admetrica.ru
 domain:aeroflot.ru
+domain:alfa-bank.com
+domain:alfa-bank.ru
 domain:alfa-finance.com
 domain:alfa-fx.com
 domain:alfa-pc.com
 domain:alfa-usa.com
+domain:alfabank.com
+domain:alfabank.ru
 domain:alfafinance.biz
 domain:alfafinance.ru
 domain:alfafuture.com
@@ -239,6 +249,7 @@ domain:jx5.ru
 domain:kaspersky.com
 domain:kaspersky.ru
 domain:kazanexpress.ru
+domain:kinopoisk-ru.clstorage.net
 domain:kinopoisk.ru
 domain:kommersant.ru
 domain:kp.ru
@@ -364,7 +375,6 @@ domain:vkuservideo.ru
 domain:vkusnoitochka.ru
 domain:vkusvill.ru
 domain:vkvideo.ru
-domain:vtb-direct.com
 domain:vtb-grants.fut.ru
 domain:vtb-liga.fut.ru
 domain:vtb-russia.com
@@ -379,7 +389,6 @@ domain:vtb24.com
 domain:vtb24.ru
 domain:vtbcareer.com
 domain:vtbfamily.ru
-domain:vtbglobalperspectives.com
 domain:vtbindia.com
 domain:vtbkep.site
 domain:vtbpartners.com
@@ -391,6 +400,7 @@ domain:webvisor.com
 domain:webvisor.org
 domain:whoosh.bike
 domain:wildberries.ru
+domain:windsurf.com
 domain:wink.ru
 domain:x5.ru
 domain:x5.tech
@@ -411,6 +421,39 @@ domain:yandex
 domain:yandex-bank.net
 domain:yandex-images.clstorage.net
 domain:yandex-team.ru
+domain:yandex.aero
+domain:yandex.az
+domain:yandex.by
+domain:yandex.cloud
+domain:yandex.co.il
+domain:yandex.com
+domain:yandex.com.am
+domain:yandex.com.ge
+domain:yandex.com.ru
+domain:yandex.com.tr
+domain:yandex.com.ua
+domain:yandex.de
+domain:yandex.ee
+domain:yandex.eu
+domain:yandex.fi
+domain:yandex.fr
+domain:yandex.jobs
+domain:yandex.kg
+domain:yandex.kz
+domain:yandex.lt
+domain:yandex.lv
+domain:yandex.md
+domain:yandex.net
+domain:yandex.org
+domain:yandex.pl
+domain:yandex.ru
+domain:yandex.st
+domain:yandex.sx
+domain:yandex.tj
+domain:yandex.tm
+domain:yandex.tr
+domain:yandex.ua
+domain:yandex.uz
 domain:yandexadexchange.net
 domain:yandexcloud.net
 domain:yandexcom.net
@@ -421,4 +464,7 @@ domain:yastat.net
 domain:yastatic-net.ru
 domain:yastatic.net
 domain:yota.ru
+domain:youla-web-static.mrgcdn.ru
+domain:youla.io
+domain:youla.ru
 domain:zentotem.net

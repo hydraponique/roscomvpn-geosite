@@ -1,6 +1,7 @@
+domain:captive.apple.com
+
 # v2fly apple-update
 
-domain:captive.apple.com
 domain:appldnld.apple.com
 domain:configuration.apple.com
 domain:fcs-keys-pub-prod.cdn-apple.com
@@ -21,7 +22,7 @@ domain:swscan.apple.com
 domain:updates-http.cdn-apple.com
 domain:updates.cdn-apple.com
 domain:wkms-public.apple.com
-keyword:xp.apple.com
+domain:xp.apple.com
 
 # v2fly apple-ads
 
@@ -32,26 +33,46 @@ domain:qwapi.com
 
 # v2fly apple-pki
 
-keyword:certs-lb.apple.com.akadns.net
-keyword:certs.apple.com
-keyword:crl-lb.apple.com.akadns.net
-keyword:crl.apple.com
-keyword:ocsp-lb.apple.com.akadns.net
-keyword:ocsp.apple.com
-keyword:ocsp2-lb.apple.com.akadns.net
-keyword:ocsp2.apple.com
-keyword:valid.apple.com
+domain:certs-lb.apple.com.akadns.net
+domain:certs.apple.com
+domain:crl-lb.apple.com.akadns.net
+domain:crl.apple.com
+domain:ocsp-lb.apple.com.akadns.net
+domain:ocsp.apple.com
+domain:ocsp2-lb.apple.com.akadns.net
+domain:ocsp2.apple.com
+domain:valid.apple.com
 
 # v2fly icloud
 
 domain:apple-icloud.cn
 domain:appleicloud.cn
+domain:applemx-icloud.com
 domain:icloud-apple.cn
 domain:icloud-content.com
 domain:icloud-isupport.com
 domain:icloud-sandbox.com
-keyword:icloud.
-keyword:icloud.com
+domain:icloud.ch
+domain:icloud.com
+domain:icloud.com.cn
+domain:icloud.de
+domain:icloud.ee
+domain:icloud.fi
+domain:icloud.fr
+domain:icloud.hu
+domain:icloud.ie
+domain:icloud.is
+domain:icloud.jp
+domain:icloud.lv
+domain:icloud.net.cn
+domain:icloud.om
+domain:icloud.org
+domain:icloud.pt
+domain:icloud.ro
+domain:icloud.se
+domain:icloud.si
+domain:icloud.sk
+domain:icloud.vn
 domain:icloudads.net
 domain:icloudapple.cn
 domain:icloudbox.net
@@ -73,12 +94,14 @@ domain:ios-icloud.com
 domain:me.com
 domain:myicloud.net
 domain:mylcloud.net
+domain:wwwicloud.com
+domain:www-cdn.icloud.com.akadns.net
 
 # CUSTOM
 
-keyword:crl3.digicert.com
-keyword:crl4.digicert.com
-keyword:ocsp.digicert.cn
-keyword:ocsp.digicert.com
-keyword:push.apple.com
-keyword:identity.apple.com
+domain:crl3.digicert.com
+domain:crl4.digicert.com
+domain:ocsp.digicert.cn
+domain:ocsp.digicert.com
+domain:push.apple.com
+domain:identity.apple.com

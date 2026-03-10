@@ -9,3 +9,4 @@ dlc.dat
 
 # Exported plaintext lists.
 /*.txt
+/__pycache__

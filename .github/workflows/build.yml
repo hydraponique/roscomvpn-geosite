@@ -52,7 +52,7 @@ jobs:
         with:
           script: |
             const { DAILY_TAG } = process.env
-            github.rest.git.createRef({
+            await github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: `refs/tags/${DAILY_TAG}`,
@@ -76,20 +76,23 @@ jobs:
           cp -f /tmp/out/dlc.dat ./geosite.dat
 
       - name: Install Mihomo (latest stable)
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          gh release download -R MetaCubeX/mihomo --pattern 'mihomo-linux-amd64*.deb' --dir /tmp
-          sudo apt-get install -y "$(ls -1 /tmp/mihomo-linux-amd64*.deb | head -n1)"
-          rm -f /tmp/mihomo-linux-amd64*.deb
+          ARCH=$(dpkg --print-architecture)
+          LATEST_URL=$(${{ env.CURL }} https://api.github.com/repos/MetaCubeX/mihomo/releases/latest \
+            | grep -oP '"browser_download_url":\s*"\K[^"]*mihomo-linux-'"$ARCH"'-[^"]*\.deb(?=")' \
+            | head -n1)
+          echo "Downloading: $LATEST_URL"
+          ${{ env.CURL }} -o /tmp/mihomo.deb "$LATEST_URL"
+          sudo dpkg -i /tmp/mihomo.deb || sudo apt-get install -f -y
+          rm -f /tmp/mihomo.deb
 
       - name: Install sing-box
         run: |
           set -euo pipefail
-          ${{ env.CURL }} -fsSL https://sing-box.app/install.sh | sudo -E sh -s -- --version 1.12.12
+          ${{ env.CURL }} https://sing-box.app/install.sh | sudo -E sh -s -- --version 1.12.12
 
-      - name: Build .mrs and .yaml
+      - name: Build .mrs
         run: |
           set -euo pipefail
 
@@ -102,9 +105,7 @@ jobs:
 
           find "$work" -path "$out" -prune -o -type f -print0 |
           while IFS= read -r -d '' f; do
-            tmp_mrs="$(mktemp)"
-            tmp_yaml="$(mktemp)"
-
+            tmp="$(mktemp)"
             awk '
               function trim(s){ sub(/^[ \t]+/,"",s); sub(/[ \t]+$/,"",s); return s }
               {
@@ -123,8 +124,18 @@ jobs:
 
                 if (s ~ /^full:/) {
                   sub(/^full:/, "", s)
-                  sub(/^\./, "", s)
                   if (s != "") print s
+                  next
+                }
+
+                if (s ~ /^keyword:/) {
+                  sub(/^keyword:/, "", s)
+                  sub(/^\./, "", s)
+                  if (s != "") {
+                    s = "+." s
+                    sub(/\.$/, ".*", s)
+                    print s
+                  }
                   next
                 }
 
@@ -144,120 +155,18 @@ jobs:
                 sub(/^\./, "", s)
                 if (s != "") {
                   s = "+." s
+                  sub(/\.$/, ".*", s)
                   print s
                 }
               }
-            ' "$f" > "$tmp_mrs"
-
-            # Process for .yaml: keyword, regexp, and plain domain strings
-            awk '
-              function trim(s){ sub(/^[ \t]+/,"",s); sub(/[ \t]+$/,"",s); return s }
-              # Remove only positive i while preserving local -i sections.
-              function strip_positive_i(flags,    out, j, c, prev) {
-                out = ""
-                for (j = 1; j <= length(flags); j++) {
-                  c = substr(flags, j, 1)
-                  prev = (j > 1 ? substr(flags, j - 1, 1) : "")
-                  if (c == "i" && prev != "-") continue
-                  out = out c
-                }
-                return out
-              }
-              function clean_regex(r,    has_minus_i, done, rest, grp, inner, cleaned, repl) {
-                has_minus_i = (r ~ /\(\?[a-z-]*-i[a-z-]*\)/ || r ~ /\(\?[a-z-]*-i[a-z-]*:/)
-                # scoped (?flags:...) — accumulate into done/rest to avoid re-matching
-                done = ""; rest = r
-                while (match(rest, /\(\?[a-z-]+:/)) {
-                  grp   = substr(rest, RSTART, RLENGTH)
-                  inner = substr(grp, 3, length(grp) - 3)
-                  cleaned = strip_positive_i(inner)
-                  gsub(/--+/, "-", cleaned)
-                  sub(/-$/, "", cleaned)
-                  if (cleaned == "-") cleaned = ""
-                  repl = (cleaned == "") ? "(?:" : "(?" cleaned ":"
-                  done = done substr(rest, 1, RSTART - 1) repl
-                  rest = substr(rest, RSTART + RLENGTH)
-                }
-                r = done rest
-                # unscoped (?flags) — same accumulator trick
-                done = ""; rest = r
-                while (match(rest, /\(\?[a-z-]+\)/)) {
-                  grp   = substr(rest, RSTART, RLENGTH)
-                  inner = substr(grp, 3, length(grp) - 3)
-                  cleaned = strip_positive_i(inner)
-                  gsub(/--+/, "-", cleaned)
-                  sub(/-$/, "", cleaned)
-                  if (cleaned == "-") cleaned = ""
-                  repl = (cleaned == "") ? "" : "(?" cleaned ")"
-                  done = done substr(rest, 1, RSTART - 1) repl
-                  rest = substr(rest, RSTART + RLENGTH)
-                }
-                r = done rest
-                if (has_minus_i) return r
-                return tolower(r)
-              }
-              {
-                gsub(/\r/,"")
-                s=$0
-
-                sub(/[ \t]*#.*/, "", s)
-                sub(/[ \t]*\/\/.*/, "", s)
-                sub(/[ \t]*@.*/, "", s)
-
-                s=trim(s)
-                s_raw=s
-                s=tolower(s)
-
-                if (s == "") next
-
-                if (s ~ /^keyword:/) {
-                  v=s
-                  sub(/^keyword:/, "", v)
-                  sub(/^\./, "", v)
-                  if (v != "") {
-                    print "DOMAIN-KEYWORD," v
-                  }
-                  next
-                }
-
-                if (s ~ /^regexp:/) {
-                  v=s_raw
-                  sub(/^[Rr][Ee][Gg][Ee][Xx][Pp]:/, "", v)
-                  v=trim(v)
-                  v=clean_regex(v)
-                  if (v != "") {
-                    print "DOMAIN-REGEX," v
-                  }
-                  next
-                }
-
-                if (s ~ /^full:/) next
-                if (s ~ /^domain:/) next
-                if (s ~ /^[a-z0-9_-]+:/) next
-              }
-            ' "$f" > "$tmp_yaml"
+            ' "$f" > "$tmp"
 
             rel="${f#$work/}"
             rel_noext="${rel%.*}"
-
-            # Build .mrs from full and domain
-            dest_mrs="$out/${rel_noext}.mrs"
-            if [ -s "$tmp_mrs" ]; then
-              mkdir -p "$(dirname "$dest_mrs")"
-              mihomo convert-ruleset domain text "$tmp_mrs" "$dest_mrs"
-            fi
-
-            # Build .yaml from keyword, regexp, and plain domains
-            dest_yaml="$out/${rel_noext}.yaml"
-            if [ -s "$tmp_yaml" ]; then
-              mkdir -p "$(dirname "$dest_yaml")"
-              {
-                echo "payload:"
-                sed "s/^/  - '/" "$tmp_yaml" | sed "s/$/'/"
-              } > "$dest_yaml"
-            fi
-
-            rm -f "$tmp_mrs" "$tmp_yaml"
+            dest="$out/${rel_noext}.mrs"
+            mkdir -p "$(dirname "$dest")"
+            mihomo convert-ruleset domain text "$tmp" "$dest"
+            rm -f "$tmp"
           done
 
       - name: Build sing-box .srs (geosite)
@@ -295,7 +204,7 @@ jobs:
                 if (t ~ /^keyword:/){ v=strip_tail(substr(t,9));                   if(v!="") print "keyword\t" v; next }
                 if (t ~ /^regexp:/) { v=strip_tail(substr(t,8));                   if(v!="") print "regex\t"   v; next }
 
-                v=t; sub(/^\./, "", v); if(v!="") print "suffix\t" v
+                v=t; sub(/^\./,"",v); if(v!="") print "keyword\t" v
               }
             ' "$f" | jq -Rn '
               def add($k; $v): .rules[0][$k] = ((.rules[0][$k] // []) + [$v]);
@@ -322,6 +231,7 @@ jobs:
         if: github.ref_name == 'master'
         run: |
           set -euo pipefail
+          rm -rf release
           mkdir -p release/mihomo release/sing-box
           cp ./geosite.dat release/
           cp -a /tmp/mihomo/rulesets/.   release/mihomo/
@@ -341,7 +251,7 @@ jobs:
           git config --local user.name "hydraponique"
           git config --local user.email "hydraponique@users.noreply.github.com"
           git checkout -b release
-          git add --ignore-removal .
+          git add -A
           git commit -m "Release ${{ env.DAILY_TAG }}"
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f -u origin release
@@ -349,7 +259,7 @@ jobs:
           git config --local user.name "hydraponique"
           git config --local user.email "hydraponique@users.noreply.github.com"
           git checkout master
-          git add --ignore-removal release/
+          git add release/
           git commit -m "Release ${{ env.DAILY_TAG }}" || echo "No changes to commit"
           git push origin master
 
@@ -383,6 +293,7 @@ jobs:
         if: github.ref_name == 'test'
         run: |
           set -euo pipefail
+          rm -rf release
           mkdir -p release/mihomo release/sing-box
           cp ./geosite.dat release/
           cp -a /tmp/mihomo/rulesets/.   release/mihomo/
@@ -397,7 +308,7 @@ jobs:
           git config --local user.name "hydraponique"
           git config --local user.email "hydraponique@users.noreply.github.com"
           git checkout -b test-release
-          git add --ignore-removal .
+          git add -A
           git commit -m "Test Release $(date -u +%Y%m%d%H%M)"
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f -u origin test-release
@@ -405,7 +316,7 @@ jobs:
           git config --local user.name "hydraponique"
           git config --local user.email "hydraponique@users.noreply.github.com"
           git checkout -B test
-          git add --ignore-removal release/
+          git add release/
           git commit -m "Test Release $(date -u +%Y%m%d%H%M)" || echo "No changes to commit"
           git push origin test
 
