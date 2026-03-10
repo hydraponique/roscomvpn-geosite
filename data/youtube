@@ -1,4 +1,3 @@
-domain:youtube
 domain:ggpht.cn
 domain:ggpht.com
 domain:googlevideo.com
@@ -8,18 +7,11 @@ domain:youtu.be
 domain:youtube-nocookie.com
 domain:youtube-ui.l.google.com
 keyword:youtube.
-domain:youtube.com
-domain:youtube.googleapis.com
-domain:youtubeeducation.com
 domain:youtubeembeddedplayer.googleapis.com
+domain:youtubeeducation.com
 domain:youtubefanfest.com
 domain:youtubegaming.com
-domain:youtubego.co.id
-domain:youtubego.co.in
-domain:youtubego.com
-domain:youtubego.com.br
-domain:youtubego.id
-domain:youtubego.in
+keyword:youtubego.
 domain:youtubei.googleapis.com
 domain:youtubekids.com
 domain:youtubemobilesupport.com

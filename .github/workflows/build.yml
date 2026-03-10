@@ -75,21 +75,12 @@ jobs:
           test -s /tmp/out/dlc.dat
           cp -f /tmp/out/dlc.dat ./geosite.dat
 
-      - name: Install Mihomo (latest stable)
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          gh release download -R MetaCubeX/mihomo --pattern 'mihomo-linux-amd64*.deb' --dir /tmp
-          sudo apt-get install -y "$(ls -1 /tmp/mihomo-linux-amd64*.deb | head -n1)"
-          rm -f /tmp/mihomo-linux-amd64*.deb
-
       - name: Install sing-box
         run: |
           set -euo pipefail
           ${{ env.CURL }} -fsSL https://sing-box.app/install.sh | sudo -E sh -s -- --version 1.12.12
 
-      - name: Build .mrs and .yaml
+      - name: Build classical .yaml for Mihomo
         run: |
           set -euo pipefail
 
@@ -102,57 +93,13 @@ jobs:
 
           find "$work" -path "$out" -prune -o -type f -print0 |
           while IFS= read -r -d '' f; do
-            tmp_mrs="$(mktemp)"
-            tmp_yaml="$(mktemp)"
+
+            rel="${f#$work/}"
+            rel_noext="${rel%.*}"
+            tmp_classical="$(mktemp)"
 
             awk '
               function trim(s){ sub(/^[ \t]+/,"",s); sub(/[ \t]+$/,"",s); return s }
-              {
-                gsub(/\r/,"")
-                s=$0
-
-                sub(/[ \t]*#.*/, "", s)
-                sub(/[ \t]*\/\/.*/, "", s)
-                sub(/[ \t]*@.*/, "", s)
-
-                s=trim(s)
-                gsub(/[ \t]+/, "", s)
-                s=tolower(s)
-
-                if (s == "") next
-
-                if (s ~ /^full:/) {
-                  sub(/^full:/, "", s)
-                  sub(/^\./, "", s)
-                  if (s != "") print s
-                  next
-                }
-
-                if (s ~ /^domain:/) {
-                  sub(/^domain:/, "", s)
-                  sub(/^\./, "", s)
-                  if (s != "") {
-                    s = "+." s
-                    sub(/\.$/, ".*", s)
-                    print s
-                  }
-                  next
-                }
-
-                if (s ~ /^[a-z0-9_-]+:/) next
-
-                sub(/^\./, "", s)
-                if (s != "") {
-                  s = "+." s
-                  print s
-                }
-              }
-            ' "$f" > "$tmp_mrs"
-
-            # Process for .yaml: keyword, regexp, and plain domain strings
-            awk '
-              function trim(s){ sub(/^[ \t]+/,"",s); sub(/[ \t]+$/,"",s); return s }
-              # Remove only positive i while preserving local -i sections.
               function strip_positive_i(flags,    out, j, c, prev) {
                 out = ""
                 for (j = 1; j <= length(flags); j++) {
@@ -165,7 +112,6 @@ jobs:
               }
               function clean_regex(r,    has_minus_i, done, rest, grp, inner, cleaned, repl) {
                 has_minus_i = (r ~ /\(\?[a-z-]*-i[a-z-]*\)/ || r ~ /\(\?[a-z-]*-i[a-z-]*:/)
-                # scoped (?flags:...) — accumulate into done/rest to avoid re-matching
                 done = ""; rest = r
                 while (match(rest, /\(\?[a-z-]+:/)) {
                   grp   = substr(rest, RSTART, RLENGTH)
@@ -179,7 +125,6 @@ jobs:
                   rest = substr(rest, RSTART + RLENGTH)
                 }
                 r = done rest
-                # unscoped (?flags) — same accumulator trick
                 done = ""; rest = r
                 while (match(rest, /\(\?[a-z-]+\)/)) {
                   grp   = substr(rest, RSTART, RLENGTH)
@@ -210,13 +155,21 @@ jobs:
 
                 if (s == "") next
 
+                if (s ~ /^full:/) {
+                  v=s; sub(/^full:/, "", v); sub(/^\./, "", v)
+                  if (v != "") print "DOMAIN," v
+                  next
+                }
+
+                if (s ~ /^domain:/) {
+                  v=s; sub(/^domain:/, "", v); sub(/^\./, "", v)
+                  if (v != "") print "DOMAIN-SUFFIX," v
+                  next
+                }
+
                 if (s ~ /^keyword:/) {
-                  v=s
-                  sub(/^keyword:/, "", v)
-                  sub(/^\./, "", v)
-                  if (v != "") {
-                    print "DOMAIN-KEYWORD," v
-                  }
+                  v=s; sub(/^keyword:/, "", v); sub(/^\./, "", v)
+                  if (v != "") print "DOMAIN-KEYWORD," v
                   next
                 }
 
@@ -225,39 +178,27 @@ jobs:
                   sub(/^[Rr][Ee][Gg][Ee][Xx][Pp]:/, "", v)
                   v=trim(v)
                   v=clean_regex(v)
-                  if (v != "") {
-                    print "DOMAIN-REGEX," v
-                  }
+                  if (v != "") print "DOMAIN-REGEX," v
                   next
                 }
 
-                if (s ~ /^full:/) next
-                if (s ~ /^domain:/) next
                 if (s ~ /^[a-z0-9_-]+:/) next
+
+                sub(/^\./, "", s)
+                if (s != "") print "DOMAIN-SUFFIX," s
               }
-            ' "$f" > "$tmp_yaml"
+            ' "$f" > "$tmp_classical"
 
-            rel="${f#$work/}"
-            rel_noext="${rel%.*}"
-
-            # Build .mrs from full and domain
-            dest_mrs="$out/${rel_noext}.mrs"
-            if [ -s "$tmp_mrs" ]; then
-              mkdir -p "$(dirname "$dest_mrs")"
-              mihomo convert-ruleset domain text "$tmp_mrs" "$dest_mrs"
-            fi
-
-            # Build .yaml from keyword, regexp, and plain domains
             dest_yaml="$out/${rel_noext}.yaml"
-            if [ -s "$tmp_yaml" ]; then
+            if [ -s "$tmp_classical" ]; then
               mkdir -p "$(dirname "$dest_yaml")"
               {
                 echo "payload:"
-                sed "s/^/  - '/" "$tmp_yaml" | sed "s/$/'/"
+                sed "s/^/  - '/" "$tmp_classical" | sed "s/$/'/"
               } > "$dest_yaml"
             fi
 
-            rm -f "$tmp_mrs" "$tmp_yaml"
+            rm -f "$tmp_classical"
           done
 
       - name: Build sing-box .srs (geosite)

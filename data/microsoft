@@ -9,8 +9,6 @@ keyword:store.core.windows.net
 domain:definitionupdates.microsoft.com
 keyword:download.microsoft.com
 keyword:update.microsoft.com
-domain:update.microsoft.com.akadns.net
-domain:mp.microsoft.com.nsatc.net
 domain:frontdoor.bigcatalog.commerce.microsoft.com
 domain:o-ring.msedge.net
 domain:wns.notify.trafficmanager.net
@@ -49,7 +47,7 @@ domain:onedrive.org
 domain:onedrive.live.com
 domain:storage.live.com
 
-domain:xbox
+domain:xbox.com
 domain:gamepass.com
 domain:orithegame.com
 domain:renovacionxboxlive.com

@@ -21,7 +21,7 @@ domain:swscan.apple.com
 domain:updates-http.cdn-apple.com
 domain:updates.cdn-apple.com
 domain:wkms-public.apple.com
-keyword:xp.apple.com
+domain:xp.apple.com
 
 # v2fly apple-ads
 
@@ -32,15 +32,15 @@ domain:qwapi.com
 
 # v2fly apple-pki
 
-keyword:certs-lb.apple.com.akadns.net
-keyword:certs.apple.com
-keyword:crl-lb.apple.com.akadns.net
-keyword:crl.apple.com
-keyword:ocsp-lb.apple.com.akadns.net
-keyword:ocsp.apple.com
-keyword:ocsp2-lb.apple.com.akadns.net
-keyword:ocsp2.apple.com
-keyword:valid.apple.com
+domain:certs-lb.apple.com.akadns.net
+domain:certs.apple.com
+domain:crl-lb.apple.com.akadns.net
+domain:crl.apple.com
+domain:ocsp-lb.apple.com.akadns.net
+domain:ocsp.apple.com
+domain:ocsp2-lb.apple.com.akadns.net
+domain:ocsp2.apple.com
+domain:valid.apple.com
 
 # v2fly icloud
 
@@ -51,7 +51,6 @@ domain:icloud-content.com
 domain:icloud-isupport.com
 domain:icloud-sandbox.com
 keyword:icloud.
-keyword:icloud.com
 domain:icloudads.net
 domain:icloudapple.cn
 domain:icloudbox.net
@@ -76,9 +75,9 @@ domain:mylcloud.net
 
 # CUSTOM
 
-keyword:crl3.digicert.com
-keyword:crl4.digicert.com
-keyword:ocsp.digicert.cn
-keyword:ocsp.digicert.com
-keyword:push.apple.com
-keyword:identity.apple.com
+domain:crl3.digicert.com
+domain:crl4.digicert.com
+domain:ocsp.digicert.cn
+domain:ocsp.digicert.com
+domain:push.apple.com
+domain:identity.apple.com
