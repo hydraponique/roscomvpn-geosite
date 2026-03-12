@@ -3,7 +3,7 @@
 <table width="100%">
 <tr>
 <td align="center"><a href="https://github.com/hydraponique/roscomvpn-geoip">RoscomVPN GeoIP</a></td>
-<td align="center"><a href="https://github.com/hydraponique/roscomvpn-geosite"><b>🌐 RoscomVPN GeoSite</b></a></td>
+<td align="center"><a href="https://github.com/hydraponique/roscomvpn-geosite"><b>🌐 RoscomVPN Geosite</b></a></td>
 <td align="center"><a href="https://github.com/hydraponique/roscomvpn-routing">RoscomVPN Routing</a></td>
 </tr>
 <tr>
@@ -43,8 +43,8 @@
 <table width="100%">
 <thead><tr><th align="left">Формат</th><th align="left">Шаблон ссылки</th></tr></thead>
 <tbody>
-<tr><td>🔶 Mihomo (.mrs)</td><td><a href="https://cdn.jsdelivr.net/gh/hydraponique/roscomvpn-geosite/mihomo/">https://cdn.jsdelivr.net/gh/hydraponique/roscomvpn-geosite/mihomo/{категория}.mrs</a></td></tr>
-<tr><td>🟣 sing-box (.srs)</td><td><a href="https://cdn.jsdelivr.net/gh/hydraponique/roscomvpn-geosite/sing-box/">https://cdn.jsdelivr.net/gh/hydraponique/roscomvpn-geosite/sing-box/{категория}.srs</a></td></tr>
+<tr><td>🔶 Mihomo (.mrs)</td><td><a href="https://cdn.jsdelivr.net/gh/hydraponique/roscomvpn-geosite/release/mihomo/">https://cdn.jsdelivr.net/gh/hydraponique/roscomvpn-geosite/release/mihomo/{категория}.mrs</a></td></tr>
+<tr><td>🟣 sing-box (.srs)</td><td><a href="https://cdn.jsdelivr.net/gh/hydraponique/roscomvpn-geosite/release/sing-box/">https://cdn.jsdelivr.net/gh/hydraponique/roscomvpn-geosite/release/sing-box/{категория}.srs</a></td></tr>
 </tbody>
 </table>
 
