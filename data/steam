@@ -9,14 +9,12 @@ domain:steamdeck.com
 domain:steamgames.com
 domain:steampowered.com
 domain:steamserver.net
-domain:steamstatic.com
 domain:steamusercontent.com
 domain:underlords.com
 domain:valvesoftware.com
 
 
 domain:edge.steam-dns.top.comcast.net
-domain:steamcommunity-a.akamaihd.net.edgesuite.net
 domain:steam.apac.qtlglb.com
 domain:steam.eca.qtlglb.com
 domain:steam.naeu.qtlglb.com
@@ -27,17 +25,6 @@ domain:steam.cdn.on.net
 domain:steam.cdn.orcon.net.nz
 domain:steam.cdn.slingshot.co.nz
 domain:steam.cdn.webra.ru
-domain:steambroadcast.akamaized.net
-domain:steamcdn-a.akamaihd.net
-domain:steamcommunity-a.akamaihd.net
-domain:steammobile.akamaized.net
-domain:steampipe-kr.akamaized.net
-domain:steampipe-partner.akamaized.net
-domain:steampipe.akamaized.net
-domain:steamstore-a.akamaihd.net
-domain:steamusercontent-a.akamaihd.net
-domain:steamuserimages-a.akamaihd.net
-domain:steamvideo-a.akamaihd.net
 domain:steamcloudsweden.blob.core.windows.net
 domain:csgo.wmsj.cn
 domain:dota2.wmsj.cn

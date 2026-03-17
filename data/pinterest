@@ -48,7 +48,3 @@ domain:pinterest.tw
 domain:pinterest.uk
 domain:pinterest.vn
 domain:pinterestmail.com
-
-#CDN
-domain:pinimg.com.cdn.cloudflare.net
-domain:pinterest.map.fastly.net
