@@ -7,7 +7,7 @@
 Если все серверы подтвердили, что домен ведёт на IP из direct — домен удаляется.
 
 Использование:
-  python3 deduplicate_geoip.py data/category-ru
+  python deduplicate.py ../data/category-ru
 """
 from __future__ import annotations
 

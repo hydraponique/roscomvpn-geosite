@@ -14,7 +14,7 @@ domain:mangalib.me
 domain:animego.me
 domain:showip.net
 domain:avtoto.ru
-domain:tildacdn.com
+domain:tilda.cc
 
 # VTB
 
@@ -26,65 +26,6 @@ domain:vtb-direct.com
 domain:sber.world
 domain:sber.ws
 domain:sbercoin.com
-
-# Yandex
-
-domain:yandex.aero
-domain:yandex.az
-domain:yandex.co.il
-domain:yandex.com
-domain:yandex.com.am
-domain:yandex.com.ge
-domain:yandex.com.tr
-domain:yandex.com.ua
-domain:yandex.de
-domain:yandex.ee
-domain:yandex.eu
-domain:yandex.fi
-domain:yandex.fr
-domain:yandex.jobs
-domain:yandex.kg
-domain:yandex.kz
-domain:yandex.lt
-domain:yandex.lv
-domain:yandex.md
-domain:yandex.net
-domain:yandex.org
-domain:yandex.pl
-domain:yandex.st
-domain:yandex.sx
-domain:yandex.tj
-domain:yandex.tm
-domain:yandex.uz
-domain:yandexcloud.net
-domain:yastatic.net
-domain:yandex.ua
-
-# VK Company
-
-domain:mvk.com
-domain:userapi.com
-domain:vk-apps.com
-domain:vk-cdn.me
-domain:vk-cdn.net
-domain:vk-portal.net
-domain:vk.cc
-domain:vk.com
-domain:vk.company
-domain:vk.design
-domain:vk.link
-domain:vk.me
-domain:vk.team
-domain:vkcache.com
-domain:vkgo.app
-domain:vklive.app
-domain:vkmessenger.app
-domain:vkmessenger.com
-domain:vkuseraudio.com
-domain:vkuserlive.net
-domain:vkuservideo.com
-domain:vkuservideo.net
-domain:mycdn.me
 
 # -----------------------------------------------------------
 # CBR Official Bank Website (10.03.2026 Snapshot)
