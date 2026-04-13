@@ -14,7 +14,6 @@ domain:ssl-lvlt.cdn.ea.com
 # EA
 
 domain:awayoutgame.com
-domain:battlefieldbadcompany2.com
 domain:battlefront2.com
 domain:battlefrontii.com
 domain:bejewled-stars.com
@@ -29,7 +28,6 @@ domain:dawngatechronicles.com
 domain:dicela.com
 domain:dicela.net
 domain:ea-anz-press.com
-domain:ea.com
 domain:eaaccess.com
 domain:eacashcard.com
 domain:eacodigos.com
@@ -89,16 +87,6 @@ domain:anthemthegame.com
 domain:apexlegends.com
 domain:projectapex.com
 
-# Battle Log / Battlefield
-domain:battlefield.com
-domain:battlefield1943.com
-domain:battlefield3.com
-domain:battlefield4.com
-domain:battlefield5.com
-domain:battlefieldheroes.com
-domain:battlefieldv.com
-domain:battlelog.com
-
 # Bioware
 domain:bioware.com
 domain:biowarestore.com
@@ -122,9 +110,6 @@ domain:darkness-risen.com
 
 # Dead Space
 domain:deadspacegame.com
-
-# DICE
-domain:dice.se
 
 # Dragon Age
 domain:dragonage.com
