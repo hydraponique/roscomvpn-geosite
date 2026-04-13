@@ -71,7 +71,7 @@
 <thead><tr><th align="left">Категория</th><th align="left">Описание</th><th align="left">Назначение</th></tr></thead>
 <tbody>
 <tr><td><code>apple</code></td><td>Apple сервисы</td><td>В direct, фикс пуш-уведомлений</td></tr>
-<tr><td><code>google-play</code></td><td>Google Play</td><td>В direct, фикс скачиваний приложений, пушей</td></tr>
+<tr><td><code>google-play</code></td><td>Google Play</td><td>В proxy, ТСПУ</td></tr>
 <tr><td><code>google-deepmind</code></td><td>Google DeepMind / AI</td><td>Серверная маршрутизация РУ сервер->Зарубеж</td></tr>
 <tr><td><code>microsoft</code></td><td>Microsoft сервисы</td><td>В direct, экономия трафика, фикс пушей</td></tr>
 <tr><td><code>github</code></td><td>GitHub</td><td>Proxy, Борьба с ТСПУ и банами РКН</td></tr>
