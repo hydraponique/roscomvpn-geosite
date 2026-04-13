@@ -1,8 +1,14 @@
-# Direct for checkers of MAX
+# Direct for checkers
 
 domain:ipify.org
 domain:checkip.amazonaws.com
 domain:ifconfig.me
+
+domain:ipapi.is
+domain:iplocate.io
+domain:ip.sb
+
+domain:2ip.ru
 
 # Federal Gov.
 
@@ -197,7 +203,6 @@ domain:bankline.ru
 domain:beeline.ru
 domain:beta-bank.com
 domain:bitrix24.ru
-domain:boosty.to
 domain:bronevik.com
 domain:cdn-tinkoff.ru
 domain:cdn-vk.ru
@@ -464,3 +469,14 @@ domain:youla-web-static.mrgcdn.ru
 domain:youla.io
 domain:youla.ru
 domain:zentotem.net
+
+# Other New
+hematonix.ru
+medtrum.ru
+medtrum.eu
+anytimeru.com
+lumiflex.ru
+ican-sinocare.ru
+freestylediabetes.ru
+rsscenter.cloud
+dbankcloud.ru

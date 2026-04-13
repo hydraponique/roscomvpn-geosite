@@ -1,10 +1,12 @@
-# Direct for checkers of MAX
+# Direct for checkers
 
 domain:ipify.org
 domain:checkip.amazonaws.com
 domain:ifconfig.me
 
-# custom for easy checking
+domain:ipapi.is
+domain:iplocate.io
+domain:ip.sb
 
 domain:2ip.ru
 
@@ -15,6 +17,9 @@ domain:animego.me
 domain:showip.net
 domain:avtoto.ru
 domain:tilda.cc
+domain:kinescope.io
+domain:kinescopecdn.net
+domain:redheadsound.studio
 
 # VTB
 
