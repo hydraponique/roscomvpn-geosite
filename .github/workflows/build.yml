@@ -59,6 +59,12 @@ jobs:
               sha: context.sha
             })
 
+      # CUSTOM LIST
+      - name: Download custom domains list
+        run: |
+          mkdir -p ./data
+          ${{ env.CURL }} "https://gist.githubusercontent.com/vacuumbeef/3ad068f4fe4aef7a29ecafff9be029b9/raw/3c60f5906e2e0768c338054a06f3ea7268c26aed/gistfile1.txt" > ./data/customlist
+
       - name: Build geosite.dat
         run: |
           set -euo pipefail
