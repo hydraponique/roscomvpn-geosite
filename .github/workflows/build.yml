@@ -81,172 +81,13 @@ jobs:
           test -s /tmp/out/dlc.dat
           cp -f /tmp/out/dlc.dat ./geosite.dat
 
-      - name: Install Mihomo (latest stable)
-        run: |
-          set -euo pipefail
-          ARCH=$(dpkg --print-architecture)
-          LATEST_URL=$(${{ env.CURL }} https://api.github.com/repos/MetaCubeX/mihomo/releases/latest \
-            | grep -oP '"browser_download_url":\s*"\K[^"]*mihomo-linux-'"$ARCH"'-[^"]*\.deb(?=")' \
-            | head -n1)
-          echo "Downloading: $LATEST_URL"
-          ${{ env.CURL }} -o /tmp/mihomo.deb "$LATEST_URL"
-          sudo dpkg -i /tmp/mihomo.deb || sudo apt-get install -f -y
-          rm -f /tmp/mihomo.deb
-
-      - name: Install sing-box
-        run: |
-          set -euo pipefail
-          ${{ env.CURL }} https://sing-box.app/install.sh | sudo -E sh -s -- --version 1.12.12
-
-      - name: Build .mrs
-        run: |
-          set -euo pipefail
-
-          work=/tmp/mihomo
-          out="$work/rulesets"
-
-          rm -rf "$work"
-          mkdir -p "$out"
-          cp -a ./data/. "$work"/
-
-          find "$work" -path "$out" -prune -o -type f -print0 |
-          while IFS= read -r -d '' f; do
-            tmp="$(mktemp)"
-            awk '
-              function trim(s){ sub(/^[ \t]+/,"",s); sub(/[ \t]+$/,"",s); return s }
-              {
-                gsub(/\r/,"")
-                s=$0
-
-                sub(/[ \t]*#.*/, "", s)
-                sub(/[ \t]*\/\/.*/, "", s)
-                sub(/[ \t]*@.*/, "", s)
-
-                s=trim(s)
-                gsub(/[ \t]+/, "", s)
-                s=tolower(s)
-
-                if (s == "") next
-
-                if (s ~ /^full:/) {
-                  sub(/^full:/, "", s)
-                  if (s != "") print s
-                  next
-                }
-
-                if (s ~ /^keyword:/) {
-                  sub(/^keyword:/, "", s)
-                  sub(/^\./, "", s)
-                  if (s != "") {
-                    s = "+." s
-                    sub(/\.$/, ".*", s)
-                    print s
-                  }
-                  next
-                }
-
-                if (s ~ /^domain:/) {
-                  sub(/^domain:/, "", s)
-                  sub(/^\./, "", s)
-                  if (s != "") {
-                    s = "+." s
-                    sub(/\.$/, ".*", s)
-                    print s
-                  }
-                  next
-                }
-
-                if (s ~ /^[a-z0-9_-]+:/) next
-
-                sub(/^\./, "", s)
-                if (s != "") {
-                  s = "+." s
-                  sub(/\.$/, ".*", s)
-                  print s
-                }
-              }
-            ' "$f" > "$tmp"
-
-            rel="${f#$work/}"
-            rel_noext="${rel%.*}"
-            dest="$out/${rel_noext}.mrs"
-            mkdir -p "$(dirname "$dest")"
-            mihomo convert-ruleset domain text "$tmp" "$dest"
-            rm -f "$tmp"
-          done
-
-      - name: Build sing-box .srs (geosite)
-        run: |
-          set -euo pipefail
-
-          src=/tmp/sing-box/src
-          out=/tmp/sing-box/rulesets
-          rm -rf /tmp/sing-box
-          mkdir -p "$src" "$out"
-          cp -a ./data/. "$src"/
-
-          find "$src" -type f -print0 |
-          while IFS= read -r -d '' f; do
-            tmp_json="$(mktemp)"
-            awk '
-              function trim(s){ sub(/^[ \t]+/,"",s); sub(/[ \t]+$/,"",s); return s }
-              function strip_tail(s){
-                gsub(/\r/,"",s)
-                s=trim(s)
-                sub(/[ \t]*#.*/, "", s)
-                sub(/[ \t]*\/\/.*/, "", s)
-                sub(/[ \t]*@.*/, "", s)
-                return trim(s)
-              }
-              {
-                t = strip_tail($0)
-                if (t == "") next
-                if (t ~ /^\/\//) next
-                if (t ~ /^#/) next
-                if (t ~ /^include:/) next
-
-                if (t ~ /^full:/)   { v=strip_tail(substr(t,6)); sub(/^\./,"",v); if(v!="") print "domain\t"  v; next }
-                if (t ~ /^domain:/) { v=strip_tail(substr(t,8)); sub(/^\./,"",v); if(v!="") print "suffix\t"  v; next }
-                if (t ~ /^keyword:/){ v=strip_tail(substr(t,9));                   if(v!="") print "keyword\t" v; next }
-                if (t ~ /^regexp:/) { v=strip_tail(substr(t,8));                   if(v!="") print "regex\t"   v; next }
-
-                v=t; sub(/^\./,"",v); if(v!="") print "keyword\t" v
-              }
-            ' "$f" | jq -Rn '
-              def add($k; $v): .rules[0][$k] = ((.rules[0][$k] // []) + [$v]);
-              reduce (inputs | split("\t")) as $it ({"version":3,"rules":[{}]};
-                if   $it[0]=="domain"  then add("domain";         $it[1])
-                elif $it[0]=="suffix"  then add("domain_suffix";  $it[1])
-                elif $it[0]=="keyword" then add("domain_keyword"; $it[1])
-                elif $it[0]=="regex"   then add("domain_regex";   $it[1])
-                else . end
-              )
-              | .rules[0] |= with_entries(select(.value | length > 0))
-              | if (.rules[0] | length) == 0 then .rules = [] else . end
-            ' > "$tmp_json"
-
-            rel="${f#$src/}"
-            rel_noext="${rel%.*}"
-            dest="$out/${rel_noext}.srs"
-            mkdir -p "$(dirname "$dest")"
-            sing-box rule-set compile --output "$dest" "$tmp_json"
-            rm -f "$tmp_json"
-          done
 
       - name: MASTER Prepare release directory and archives
         if: github.ref_name == 'master'
         run: |
           set -euo pipefail
           rm -rf release
-          mkdir -p release/mihomo release/sing-box
           cp ./geosite.dat release/
-          cp -a /tmp/mihomo/rulesets/.   release/mihomo/
-          cp -a /tmp/sing-box/rulesets/. release/sing-box/
-          rm -f /tmp/mihomo.tar.gz /tmp/sing-box.tar.gz
-          tar -czf release/mihomo.tar.gz   -C release mihomo
-          tar -czf release/sing-box.tar.gz -C release sing-box
-          test -s release/mihomo.tar.gz
-          test -s release/sing-box.tar.gz
           sha256sum release/geosite.dat > release/geosite.dat.sha256
 
       - name: MASTER Push to release branch and update master
@@ -300,10 +141,7 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf release
-          mkdir -p release/mihomo release/sing-box
           cp ./geosite.dat release/
-          cp -a /tmp/mihomo/rulesets/.   release/mihomo/
-          cp -a /tmp/sing-box/rulesets/. release/sing-box/
           sha256sum release/geosite.dat > release/geosite.dat.sha256
 
       - name: TEST Push to test-release branch & update test branch
