@@ -1,0 +1,28 @@
+# Push notifications and connectivity checks for mobile clients.
+#
+# These must stay DIRECT: routing them through a tunnel adds delivery latency,
+# and when the VPN drops the user simply stops receiving notifications and
+# blames the app. Apple hosts already live in `apple`; this file adds the
+# Android/FCM side, which was missing, plus the OS connectivity probes that
+# make the system show "no internet" when they fail.
+
+# Android / FCM
+domain:mtalk.google.com
+domain:mtalk4.google.com
+domain:alt1-mtalk.google.com
+domain:alt2-mtalk.google.com
+domain:alt3-mtalk.google.com
+domain:alt4-mtalk.google.com
+domain:alt5-mtalk.google.com
+domain:alt6-mtalk.google.com
+domain:alt7-mtalk.google.com
+domain:alt8-mtalk.google.com
+domain:android.clients.google.com
+domain:device-provisioning.googleapis.com
+domain:fcm.googleapis.com
+domain:firebaseinstallations.googleapis.com
+
+# Connectivity checks (system shows "no internet" without them)
+domain:connectivitycheck.gstatic.com
+domain:connectivitycheck.android.com
+domain:time.android.com
