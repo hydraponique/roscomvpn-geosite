@@ -334,6 +334,9 @@ domain:heads4-ak-spotify-com.akamaized.net
 domain:spotify.map.fastly.net
 domain:spotify.map.fastlylb.net
 
+# Shikimori
+domain:shikimori.io
+
 # Strava
 keyword:strava.com
 
